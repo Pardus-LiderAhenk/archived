@@ -324,9 +324,10 @@ public class PolicyRequestProcessorImpl implements IPolicyRequestProcessor {
 		if (label != null && !label.isEmpty()) {
 			propertiesMap.put("label", label);
 		}
-		if (active != null) {
-			propertiesMap.put("active", active);
-		}
+		//if this comment is open it will not show inactive policies
+//		if (active != null) {
+//			propertiesMap.put("active", active);
+//		}
 
 		// Find desired policies
 		List<? extends IPolicy> policies = policyDao.findByProperties(IPolicy.class, propertiesMap, null, null);
@@ -561,5 +562,66 @@ public class PolicyRequestProcessorImpl implements IPolicyRequestProcessor {
 	public void setMailAddressDao(IMailAddressDao mailAddressDao) {
 		this.mailAddressDao = mailAddressDao;
 	}
+
+	@Override
+	public IRestResponse getLatestAgentPolicy(String uid) {
+		List<Object[]> policies = policyDao.getLatestAgentPolicy(uid);
+		List<IPolicy> listPolicy = null;
+		if(policies != null) {
+			listPolicy = new ArrayList<>();
+			for(int i = 0; i < policies.size(); i++) {
+				IPolicy policy = (IPolicy) policies.get(i)[0];
+				policy.setcommandOwnerUid((String) policies.get(i)[3]);
+				listPolicy.add(policy);
+			}
+		}
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("policy", listPolicy);
+		return responseFactory.createResponse(RestResponseStatus.OK, "Record retrieved.", resultMap);
+	}
+
+	@Override
+	public IRestResponse getLatestUserPolicy(String uid, List<LdapEntry> groupDns) {
+		List<Object[]> policies = policyDao.getLatestUserPolicy(uid, groupDns);
+		List<IPolicy> listPolicy = null;
+		if(policies != null) {
+			listPolicy = new ArrayList<>();
+			for(int i = 0; i < policies.size(); i++) {
+				IPolicy policy = (IPolicy) policies.get(i)[0];
+				policy.setcommandOwnerUid((String) policies.get(i)[3]);
+				listPolicy.add(policy);
+			}
+		}
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("policy", listPolicy);
+		return responseFactory.createResponse(RestResponseStatus.OK, "Record retrieved.", resultMap);
+	}
+
+	@Override
+	public IRestResponse getCommandExecutionResult(Long policyID, String uid, List<LdapEntry> groupDns) {
+		List<Object[]> executionResults = commandDao.getCommandExecutionResultsOfPolicy(policyID, uid, groupDns);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("commandExecutionResult", executionResults);
+		return responseFactory.createResponse(RestResponseStatus.OK, "Record retrieved.", resultMap);
+	}
+
+	@Override
+	public IRestResponse getLatestGroupPolicy(List<String> dnList) {
+		List<Object[]> policies = policyDao.getLatestGroupPolicy(dnList);
+		List<IPolicy> listPolicy = null;
+		if(policies != null) {
+			listPolicy = new ArrayList<>();
+			for(int i = 0; i < policies.size(); i++) {
+				IPolicy policy = (IPolicy) policies.get(i)[0];
+				policy.setcommandOwnerUid((String) policies.get(i)[3]);
+				listPolicy.add(policy);
+			}
+		}
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("policy", listPolicy);
+		return responseFactory.createResponse(RestResponseStatus.OK, "Record retrieved.", resultMap);
+	}
+
+
 
 }

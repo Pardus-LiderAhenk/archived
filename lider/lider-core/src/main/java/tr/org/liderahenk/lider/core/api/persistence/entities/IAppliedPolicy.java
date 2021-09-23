@@ -28,7 +28,7 @@ import java.util.Set;
  * @author <a href="mailto:emre.akkaya@agem.com.tr">Emre Kağan Akkaya</a>
  *
  */
-public interface IPolicy extends IEntity {
+public interface IAppliedPolicy extends IEntity {
 
 	/**
 	 * 
@@ -82,6 +82,4 @@ public interface IPolicy extends IEntity {
 
 	void setPolicyVersion(String policyVersion);
 	
-	void setcommandOwnerUid(String commandOwnerUid);
-
 }

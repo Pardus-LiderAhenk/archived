@@ -19,6 +19,7 @@
 */
 package tr.org.liderahenk.lider.core.api.rest;
 
+import tr.org.liderahenk.lider.core.api.persistence.entities.IRegistrationTemplate;
 import tr.org.liderahenk.lider.core.api.rest.requests.IMailManagementRequest;
 import tr.org.liderahenk.lider.core.api.rest.requests.IPolicyExecutionRequest;
 import tr.org.liderahenk.lider.core.api.rest.requests.IPolicyRequest;
@@ -55,5 +56,7 @@ public interface IRequestFactory {
 	ISearchGroupRequest createSearchGroupRequest(String json) throws Exception;
 	
 	IMailManagementRequest createMailManagementRequest(String json) throws Exception;
+
+	IRegistrationTemplate createRegistrationTemplateRequest(String json) throws Exception;
 
 }

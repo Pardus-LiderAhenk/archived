@@ -60,7 +60,7 @@
 		<property name="mailParameterDao" ref="mailParameterDao" />
 		<property name="entityFactory" ref="entityFactory" />
 	</bean>
-
+	
 	<service ref="agentRequestProcessor"
 		interface="tr.org.liderahenk.lider.core.api.rest.processors.IAgentRequestProcessor" />
 	<bean id="agentRequestProcessor"
@@ -141,6 +141,16 @@
 		<property name="configurationService" ref="configService" />
 		<property name="agentDao" ref="agentDao" />
 	</bean>
+	
+	
+	<service ref="registrationRequestProcessor"
+		interface="tr.org.liderahenk.lider.core.api.rest.processors.IRegistrationRequestProcessor" />
+	<bean id="registrationRequestProcessor"
+		class="tr.org.liderahenk.lider.rest.RegistrationRequestProcessorImpl">
+		<property name="requestFactory" ref="requestFactory" />
+		<property name="responseFactory" ref="responseFactory" />
+		<property name="registrationDao" ref="registrationDao" />
+	</bean>
 
 	<reference id="pluginDao"
 		interface="tr.org.liderahenk.lider.core.api.persistence.dao.IPluginDao" />
@@ -181,17 +191,15 @@
 		interface="tr.org.liderahenk.lider.core.api.messaging.IMessagingService" />
 	<reference id="messageFactory"
 		interface="tr.org.liderahenk.lider.core.api.messaging.IMessageFactory" />
-		
 	<reference id="mailAddressDao"
 		interface="tr.org.liderahenk.lider.core.api.persistence.dao.IMailAddressDao" />
-		
 	<reference id="mailContentDao"
 		interface="tr.org.liderahenk.lider.core.api.persistence.dao.IMailContentDao" />
-		
-		
 	<reference id="mailParameterDao"
 		interface="tr.org.liderahenk.lider.core.api.persistence.dao.IMailParameterDao" />
-		
 	<reference id="mailService"  interface="tr.org.liderahenk.lider.core.api.mail.IMailService" />
+	
+	<reference id="registrationDao"
+		interface="tr.org.liderahenk.lider.core.api.persistence.dao.IRegistrationDao" />
 
 </blueprint>

@@ -17,32 +17,31 @@
 *    You should have received a copy of the GNU General Public License
 *    along with Lider Ahenk.  If not, see <http://www.gnu.org/licenses/>.
 */
-package tr.org.liderahenk.lider.core.api.messaging.messages;
+package tr.org.liderahenk.lider.core.api.persistence.entities;
 
-/**
- * IUserSessionMessage is used to notify the system for user login & logout
- * events.
- * 
- * @author <a href="mailto:emre.akkaya@agem.com.tr">Emre Akkaya</a>
- *
- */
-public interface IUserSessionMessage extends IAgentMessage {
+import java.util.Date;
 
-	/**
-	 * 
-	 * @return user name
-	 */
-	String getUsername();
 
-	/**
-	 * (Optional)
-	 * 
-	 * @return comma-separated IP addresses
-	 */
-	String getIpAddresses();
+public interface IRegistrationTemplate extends IEntity {
 	
-	String getUserIp();
 	
-	String getHostname();
+	Long getId();
 
+	void setId(Long id);
+
+	String getUnitId();
+
+	void setUnitId(String unitId);
+
+	String getAuthGroup();
+
+	void setAuthGroup(String authGroup);
+
+	String getParentDn();
+
+	void setParentDn(String parentDn);
+
+	Date getCreateDate();
+
+	void setCreateDate(Date createDate);
 }

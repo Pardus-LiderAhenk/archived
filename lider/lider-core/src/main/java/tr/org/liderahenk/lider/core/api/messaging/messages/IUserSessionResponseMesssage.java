@@ -19,30 +19,26 @@
 */
 package tr.org.liderahenk.lider.core.api.messaging.messages;
 
+import java.util.Map;
+
 /**
- * IUserSessionMessage is used to notify the system for user login & logout
- * events.
- * 
- * @author <a href="mailto:emre.akkaya@agem.com.tr">Emre Akkaya</a>
+ * Interface for User Session messages sent <b>from Lider to agents</b>.
  *
+ * 
  */
-public interface IUserSessionMessage extends IAgentMessage {
+public interface IUserSessionResponseMesssage extends ILiderMessage {
 
 	/**
 	 * 
-	 * @return user name
+	 * @return custom parameter map that can be used to execute indicated
+	 *         'protocol'
 	 */
-	String getUsername();
+	Map<String, Object> getParameterMap();
 
-	/**
-	 * (Optional)
-	 * 
-	 * @return comma-separated IP addresses
-	 */
-	String getIpAddresses();
+	String getUserName();
+
+	void setUserName(String userName);
+
 	
-	String getUserIp();
-	
-	String getHostname();
 
 }

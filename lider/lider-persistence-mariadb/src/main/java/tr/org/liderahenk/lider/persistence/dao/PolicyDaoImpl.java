@@ -190,7 +190,7 @@ public class PolicyDaoImpl implements IPolicyDao {
 	}
 
 	private static final String LATEST_USER_POLICY = 
-			"SELECT DISTINCT pol, ce.id, c.expirationDate " 
+			"SELECT DISTINCT pol, ce.id, c.expirationDate, c.commandOwnerUid " 
 			+ "FROM CommandImpl c "
 			+ "INNER JOIN c.policy pol " 
 			+ "INNER JOIN c.commandExecutions ce "
@@ -242,7 +242,7 @@ public class PolicyDaoImpl implements IPolicyDao {
 	}
 
 	private static final String LATEST_MACHINE_POLICY = 
-			"SELECT DISTINCT pol, ce.id, c.expirationDate "
+			"SELECT DISTINCT pol, ce.id, c.expirationDate, c.commandOwnerUid "
 			+ "FROM CommandImpl c "
 			+ "INNER JOIN c.policy pol "
 			+ "INNER JOIN c.commandExecutions ce "
@@ -275,6 +275,51 @@ public class PolicyDaoImpl implements IPolicyDao {
 	 */
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+
+	private static final String LATEST_GROUP_POLICY = 
+			"SELECT DISTINCT pol, ce.id, c.expirationDate, c.commandOwnerUid "
+			+ "FROM CommandImpl c "
+			+ "INNER JOIN c.policy pol "
+			+ "INNER JOIN c.commandExecutions ce "
+			+ "WHERE "
+			+ "(c.activationDate IS NULL OR c.activationDate < :today) "
+			+ "AND (c.expirationDate IS NULL OR c.expirationDate > :today) "
+			+ "AND pol.deleted = False "
+			+ "##WHERE##"
+			+ "ORDER BY ce.createDate DESC";
+	
+	
+	
+	/**
+	 * Return the latest applied policy to group or to groupOfNames for Lider Console
+	 * 
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object[]> getLatestGroupPolicy(List<String> dnList) {
+		String sql = LATEST_GROUP_POLICY;
+		String WHERE_CONDITION = "AND ( ";
+		if(dnList != null) {
+			for (int i = 0; i < dnList.size(); i++) {
+				if(i != 0) {
+					WHERE_CONDITION += " OR ";
+				}
+				WHERE_CONDITION += "c.dnListJsonString LIKE \"%" + dnList.get(i) + "%\"";
+			}
+			WHERE_CONDITION += ") ";
+			sql = sql.replace("##WHERE##", WHERE_CONDITION);
+		}
+		else {
+			sql = sql.replace("##WHERE##", "");
+		}
+		Query query = entityManager.createQuery(sql);
+		query.setParameter("today", new Date(), TemporalType.TIMESTAMP);
+		List<Object[]> resultList = query.setMaxResults(1).getResultList();
+		logger.debug("Agent policy result list: {}",
+				resultList != null && !resultList.isEmpty() && resultList.get(0) != null && resultList.get(0).length > 0
+						? (IPolicy) resultList.get(0)[0] : null);
+		return resultList;
 	}
 
 }

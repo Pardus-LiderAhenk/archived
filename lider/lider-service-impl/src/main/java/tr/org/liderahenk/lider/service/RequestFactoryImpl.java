@@ -23,6 +23,7 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import tr.org.liderahenk.lider.core.api.persistence.entities.IRegistrationTemplate;
 import tr.org.liderahenk.lider.core.api.rest.IRequestFactory;
 import tr.org.liderahenk.lider.core.api.rest.requests.IMailManagementRequest;
 import tr.org.liderahenk.lider.core.api.rest.requests.IPolicyExecutionRequest;
@@ -37,6 +38,7 @@ import tr.org.liderahenk.lider.service.requests.MailManagementRequestImpl;
 import tr.org.liderahenk.lider.service.requests.PolicyExecutionRequestImpl;
 import tr.org.liderahenk.lider.service.requests.PolicyRequestImpl;
 import tr.org.liderahenk.lider.service.requests.ProfileRequestImpl;
+import tr.org.liderahenk.lider.service.requests.RegistrationTemplateReqImpl;
 import tr.org.liderahenk.lider.service.requests.ReportGenerationRequestImpl;
 import tr.org.liderahenk.lider.service.requests.ReportTemplateRequestImpl;
 import tr.org.liderahenk.lider.service.requests.ReportViewRequestImpl;
@@ -101,11 +103,16 @@ public class RequestFactoryImpl implements IRequestFactory {
 		return new ObjectMapper().readValue(json, SearchGroupRequestImpl.class);
 	}
 	
-	
 	@Override
 	public IMailManagementRequest createMailManagementRequest(String json) throws Exception {
 		logger.debug("Creating IMailManagementRequest instance from json: {}", json);
 		return new ObjectMapper().readValue(json, MailManagementRequestImpl.class);
 	}
-
+	
+	@Override
+	public IRegistrationTemplate createRegistrationTemplateRequest(String json) throws Exception {
+		logger.debug("Creating IRegistrationTemplate instance from json: {}", json);
+		return new ObjectMapper().readValue(json, RegistrationTemplateReqImpl.class);
+	}
+	
 }
