@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: tr.org.liderahenk.installer.lider
+Bundle-SymbolicName: tr.org.liderahenk.installer.lider;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: tr.org.liderahenk.installer.lider.Activator
+Bundle-Vendor: Agem Bilişim
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.commands,
+ tr.org.liderahenk.installer.rcp,
+ org.eclipse.e4.ui.model.workbench,
+ org.eclipse.e4.core.di,
+ org.slf4j.api,
+ org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: conf/,
+ .

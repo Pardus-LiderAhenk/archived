@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.SudoersProfile"            
+            name="%command.profile">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.sudoers.handlers.SudoersProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.SudoersProfile">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      	</handler>
+      	
+      	<!-- Task handler -->
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.SudoersProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.SudoersProfile"
+                  tooltip="%command.profile">
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem 
+  				label="%command.profile" 
+  				pluginName="sudoers" 
+  				pluginVersion="1.0.0" 
+  				profileCommandId="tr.org.liderahenk.liderconsole.commands.SudoersProfile" >
+  		</policyItem>
+  	</extension>
+  	
+</plugin>

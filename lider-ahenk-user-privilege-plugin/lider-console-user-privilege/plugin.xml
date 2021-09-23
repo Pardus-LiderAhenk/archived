@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.UserPrivilegeProfile"            
+            name="%command.profile">
+      </command>
+    
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+       	<handler
+            class="tr.org.liderahenk.user.privilege.handlers.UserPrivilegeProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.UserPrivilegeProfile">
+      	</handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+		<menuContribution
+      		allPopups="false"
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.UserPrivilegeProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.UserPrivilegeProfile"
+                  tooltip="%command.profile"
+                  icon="icons/16/user-privilege.png">
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="user-privilege" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.UserPrivilegeProfile" />
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+		<plugin name="user-privilege" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup
+            class="tr.org.liderahenk.liderconsole.core.ActivationTriggerDummy">
+      </startup>
+   </extension>
+
+	<!-- CUSTOM EXTENSION POINTS -->
+	<extension-point id="tr.org.liderahenk.liderconsole.core.i18n" name="%extension.point.i18n" schema="schema/tr.org.liderahenk.liderconsole.core.i18n.exsd"/>
+	<extension-point id="tr.org.liderahenk.liderconsole.core.profilemenu" name="%extension.point.profile.menu" schema="schema/tr.org.liderahenk.liderconsole.core.profilemenu.exsd"/>
+	<!-- Plugin may contribute to this extension point: -->
+	<extension-point id="tr.org.liderahenk.liderconsole.core.policymenu" name="%extension.point.policy.menu" schema="schema/tr.org.liderahenk.liderconsole.core.policymenu.exsd"/>
+	
+	
+	<extension-point id="tr.org.liderahenk.liderconsole.core.taskmenu" name="%extension.point.task.menu" schema="schema/tr.org.liderahenk.liderconsole.core.taskmenu.exsd"/>
+   
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml">
+      </toc>
+      <toc
+            file="testToc.xml"
+            primary="true">
+      </toc>
+   </extension>
+   
+   <!-- COMMANDS -->
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="Lider">
+      </category>  
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.LdapSearch"            
+            name="%command.ldap.search">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.InstalledPlugins"            
+            name="%command.installed.plugins">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.PolicyDefinition"
+            name="%command.policy.definition">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.AgentInfo"
+            name="%command.agent.info">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.AgentDetailInfo"
+            name="%command.agent.detail.info">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.ReportTemplate"
+            name="%command.report.template">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.ReportView"
+            name="%command.report.view">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionSelect"
+            name="%command.policy.execution.select">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionNew"
+            name="%command.policy.execution.new">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.ExecutedTask"
+            name="%command.executed.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.AppliedPolicy"
+            name="%command.applied.policy">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.core.commands.MailConfiguration"
+            name="%command.mailconfiguration">
+      </command>
+     
+   </extension>
+   
+   <!-- HANDLERS -->
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.LdapSearchHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.LdapSearch">
+      </handler>
+      <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.InstalledPluginsHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.InstalledPlugins">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.PolicyDefinitionHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.PolicyDefinition">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.AgentInfoHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.AgentInfo">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.AgentDetailInfoHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.AgentDetailInfo">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.ReportTemplateHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.ReportTemplate">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.ReportViewHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.ReportView">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.ExecutedTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.ExecutedTask">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.AppliedPolicyHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.AppliedPolicy">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.MailConfigurationHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.MailConfiguration">
+      </handler>
+	 
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.PolicyExecutionSelectHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionSelect">
+               <enabledWhen>
+					<and>
+						<with
+			                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+			             	<equals
+			                   value="true">
+			             	</equals>
+			          	</with>
+			          	<iterate operator="or">
+			          		<or>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isMultipleEntriesSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+							</or>	          
+			          	</iterate>
+			       </and>
+               </enabledWhen>
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.liderconsole.core.handlers.PolicyExecutionNewHandler"
+            commandId="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionNew">
+               <enabledWhen>
+					<and>
+						<with
+			                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+			             	<equals
+			                   value="true">
+			             	</equals>
+			          	</with>
+			          	<iterate operator="or">
+			          		<or>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isMultipleEntriesSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+							</or>	          
+			          	</iterate>
+			       </and>
+               </enabledWhen>
+      </handler>
+   </extension>
+   
+   <!-- MENUS -->
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="tr.org.liderahenk.liderconsole.menus.LiderMain"
+               label="%menu.label.main"
+               mnemonic="%menu.mnemonic.main">
+               <visibleWhen>
+               		<with
+                       variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                       <equals
+                             value="true">
+                       </equals>
+               		</with>
+               </visibleWhen>
+         </menu>
+      </menuContribution>
+      
+      
+      <menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+		<!-- Plugins may contribute to this menu: -->
+		
+		<!--
+		<menu
+               id="tr.org.liderahenk.liderconsole.menus.ProfileDefinition"
+               label="%menu.label.profile.definition">
+		</menu>
+		-->
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.PolicyDefinition"
+	          id="tr.org.liderahenk.liderconsole.core.commands.PolicyDefinition"
+	          tooltip="%command.policy.definition">
+        </command>
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.AgentInfo"
+	          id="tr.org.liderahenk.liderconsole.core.commands.AgentInfo"
+	          icon="icons/16/chart-flow.png"
+	          tooltip="%command.agent.info">
+        </command>
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.MailConfiguration"
+	          id="tr.org.liderahenk.liderconsole.core.commands.MailConfiguration"
+	          icon="icons/16/chart-flow.png"
+	          tooltip="%command.mailconfiguration">
+        </command>
+		
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.ExecutedTask"
+	          id="tr.org.liderahenk.liderconsole.core.commands.ExecutedTask"
+	          icon="icons/16/task-done.png"
+	          tooltip="%command.executed.task">
+        </command>
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.AppliedPolicy"
+	          id="tr.org.liderahenk.liderconsole.core.commands.AppliedPolicy"
+	          icon="icons/16/task-done.png"
+	          tooltip="%command.applied.policy">
+        </command>
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.commands.LdapSearch"
+	          id="tr.org.liderahenk.liderconsole.commands.LdapSearch"
+	          icon="icons/16/ldap.png"
+	          tooltip="%command.ldap.search">
+        </command>
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.commands.InstalledPlugins"
+	          id="tr.org.liderahenk.liderconsole.commands.InstalledPlugins"
+	          icon="icons/16/server.png"
+	          tooltip="%command.installed.plugins">
+        </command>
+		<menu
+               id="tr.org.liderahenk.liderconsole.menus.Reporting"
+               label="%menu.label.reporting"
+               icon="icons/16/report.png">
+		</menu>
+	  </menuContribution>
+	  
+	  
+	  
+	  
+	  
+      <menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.Reporting?after=additions">
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.ReportTemplate"
+	          id="tr.org.liderahenk.liderconsole.core.commands.ReportTemplate"
+	          icon="icons/16/report.png"
+	          tooltip="%command.report.template">
+        </command>
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.ReportView"
+	          id="tr.org.liderahenk.liderconsole.core.commands.ReportView"
+	          icon="icons/16/report.png"
+	          tooltip="%command.report.view">
+        </command>
+	  </menuContribution>
+	 
+	 
+	 <!--
+      <menuContribution
+            locationURI="popup:org.apache.directory.studio.ldapbrowser.ui.views.browser.BrowserView?after=additions">
+         <menu
+               id="tr.org.liderahenk.liderconsole.menus.ApplyPolicy"
+               label="%menu.label.apply.policy">
+         </menu>
+         <menu
+               id="tr.org.liderahenk.liderconsole.menus.ApplyTask"
+               label="%menu.label.apply.task">
+         </menu>
+		 <command
+				commandId="tr.org.liderahenk.liderconsole.core.commands.AgentDetailInfo"
+				id="tr.org.liderahenk.liderconsole.core.commands.AgentDetailInfo"
+				tooltip="%menu.label.agent.detail.info">
+               <visibleWhen>
+					<and>
+			          <with
+			                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+			             <equals
+			                   value="true">
+			             </equals>
+			          </with>
+					<with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+		             	<equals
+			                   value="true">
+			            </equals>
+		          	</with>
+			       </and>
+               </visibleWhen>
+		 </command>
+      </menuContribution>
+      
+      
+      <menuContribution
+            locationURI="popup:tr.org.liderahenk.liderconsole.core.views.SearchGroupView?after=additions">
+         <menu
+               id="tr.org.liderahenk.liderconsole.menus.ApplyPolicy"
+               label="%menu.label.apply.policy">
+         </menu>
+         <menu
+               id="tr.org.liderahenk.liderconsole.menus.ApplyTask"
+               label="%menu.label.apply.task">
+         </menu>
+      </menuContribution>
+      
+      
+      
+      <menuContribution
+            locationURI="popup:tr.org.liderahenk.liderconsole.core.views.LdapBrowserView?after=additions">
+         <menu
+               id="tr.org.liderahenk.liderconsole.menus.ApplyPolicy"
+               label="%menu.label.apply.policy">
+         </menu>
+         <menu
+               id="tr.org.liderahenk.liderconsole.menus.ApplyTask"
+               label="%menu.label.apply.task">
+         </menu>
+      </menuContribution>
+      
+      
+	  <menuContribution
+		locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyPolicy?after=additions">
+			<command
+                  commandId="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionSelect"
+                  id="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionSelect"
+                  icon="icons/16/send.png"
+                  style="push">
+               <visibleWhen>
+					<and>
+						<with
+			                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+			             	<equals
+			                   value="true">
+			             	</equals>
+			          	</with>
+			          	<iterate operator="or">
+			          		<or>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isMultipleEntriesSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+							</or>	          
+			          	</iterate>
+			       </and>
+               </visibleWhen>
+            </command>
+			<command
+                  commandId="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionNew"
+                  id="tr.org.liderahenk.liderconsole.core.commands.PolicyExecutionNew"
+                  icon="icons/16/send.png"
+                  style="push">
+               <visibleWhen>
+					<and>
+						<with
+			                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+			             	<equals
+			                   value="true">
+			             	</equals>
+			          	</with>
+			          	<iterate operator="or">
+			          		<or>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isMultipleEntriesSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+								<with
+		                			variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+		             				<equals
+			                   			value="true">
+			            			</equals>
+		          				</with>
+							</or>	          
+			          	</iterate>
+			       </and>
+               </visibleWhen>
+            </command>
+	  </menuContribution>
+	  
+	  -->
+	  
+	  
+   <menuContribution
+         locationURI="toolbar:org.eclipse.ui.main.toolbar">
+      <toolbar
+            id="tr.org.liderahenk.liderconsole.core.toolbar"
+            label="Lider">
+            
+         <command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.PolicyDefinition"
+	          id="tr.org.liderahenk.liderconsole.core.commands.PolicyDefinition"
+	          icon="icons/16/liderahenk.png"
+	          tooltip="%command.policy.definition">
+	          <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command> 
+            
+         <command
+               commandId="tr.org.liderahenk.liderconsole.core.commands.AgentInfo"
+               icon="icons/16/script-code.png"
+               label="Agent Info"
+               style="push">
+            <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+         
+         
+         <command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.MailConfiguration"
+	          id="tr.org.liderahenk.liderconsole.core.commands.MailConfiguration"
+	          icon="icons/16/chart-flow.png"
+	          label="Mail Configuraiton"
+	          tooltip="%command.mailconfiguration">
+	          
+	          <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command>
+        
+        
+        		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.ExecutedTask"
+	          id="tr.org.liderahenk.liderconsole.core.commands.ExecutedTask"
+	          icon="icons/16/task-done.png"
+	          tooltip="%command.executed.task">
+	          <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command>
+        
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.AppliedPolicy"
+	          id="tr.org.liderahenk.liderconsole.core.commands.AppliedPolicy"
+	          icon="icons/16/task-done.png"
+	          tooltip="%command.applied.policy">
+	          <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command>
+        
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.commands.LdapSearch"
+	          id="tr.org.liderahenk.liderconsole.commands.LdapSearch"
+	          icon="icons/16/ldap.png"
+	          tooltip="%command.ldap.search">
+	           <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command>
+        
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.commands.InstalledPlugins"
+	          id="tr.org.liderahenk.liderconsole.commands.InstalledPlugins"
+	          icon="icons/16/server.png"
+	          tooltip="%command.installed.plugins">
+	          <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command>
+        
+        <command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.ReportTemplate"
+	          id="tr.org.liderahenk.liderconsole.core.commands.ReportTemplate"
+	          icon="icons/16/report.png"
+	          tooltip="%command.report.template">
+	           <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command>
+		<command
+	          commandId="tr.org.liderahenk.liderconsole.core.commands.ReportView"
+	          id="tr.org.liderahenk.liderconsole.core.commands.ReportView"
+	          icon="icons/16/report.png"
+	          tooltip="%command.report.view">
+	           <visibleWhen>
+               <with
+                     variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                  <equals
+                        value="true">
+                  </equals>
+               </with>
+            </visibleWhen>
+        </command>
+		
+         
+         
+      </toolbar>
+   </menuContribution>
+   
+
+  	</extension>
+  	
+ 	<!-- EDITORS -->
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+	       class="tr.org.liderahenk.liderconsole.core.editors.LdapSearchEditor"
+	       default="true"
+	       icon="icons/16/ldap.png"
+	       id="tr.org.liderahenk.liderconsole.core.editors.LdapSearchEditor"
+	       name="%editor.ldap.search">
+		</editor>
+		
+		
+		<editor
+	       class="tr.org.liderahenk.liderconsole.core.editors.LiderManagementEditor"
+	       default="true"
+	       icon="icons/16/ldap.png"
+	       id="tr.org.liderahenk.liderconsole.core.editors.LiderManagementEditor"
+	       name="%editor.lider.management">
+		</editor>
+		
+		<editor
+	       class="tr.org.liderahenk.liderconsole.core.editors.LiderMainEditor"
+	       default="true"
+	       icon="icons/16/ldap.png"
+	       id="tr.org.liderahenk.liderconsole.core.editors.LiderMainEditor"
+	       name="%editor.lider.mainpage">
+		</editor>
+		
+		<editor
+	       class="tr.org.liderahenk.liderconsole.core.editors.MailConfigurationEditor"
+	       default="true"
+	       icon="icons/16/ldap.png"
+	       id="tr.org.liderahenk.liderconsole.core.editors.MailConfigurationEditor"
+	       name="%editor.lider.mailconfiguration">
+		</editor>
+		
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.DefaultProfileEditor"
+		    icon="icons/16/folder-open.png"
+		    id="tr.org.liderahenk.liderconsole.core.editors.DefaultProfileEditor"
+		    name="%editor.profile.definition">
+	    </editor>
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.InstalledPluginsEditor"
+		    id="tr.org.liderahenk.liderconsole.core.editors.InstalledPluginsEditor"
+		    name="%editor.installed.plugins">
+	    </editor>
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.PolicyDefinitionEditor"
+		    icon="icons/16/folder-open.png"
+		    id="tr.org.liderahenk.liderconsole.core.editors.PolicyDefinitionEditor"
+		    name="%editor.policy.definition">
+	    </editor> 
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.AgentInfoEditor"
+		    icon="icons/16/chart-flow.png"
+		    id="tr.org.liderahenk.liderconsole.core.editors.AgentInfoEditor"
+		    name="%editor.agent.info">
+	    </editor> 
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.ReportTemplateEditor"
+		    icon="icons/16/report.png"
+		    id="tr.org.liderahenk.liderconsole.core.editors.ReportTemplateEditor"
+		    name="%editor.report.template">
+	    </editor> 
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.ReportViewEditor"
+		    icon="icons/16/report.png"
+		    id="tr.org.liderahenk.liderconsole.core.editors.ReportViewEditor"
+		    name="%editor.report.view">
+	    </editor> 
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.ExecutedTaskEditor"
+		    icon="icons/16/task-done.png"
+		    id="tr.org.liderahenk.liderconsole.core.editors.ExecutedTaskEditor"
+		    name="%editor.executed.task">
+	    </editor> 
+	    <editor
+		    class="tr.org.liderahenk.liderconsole.core.editors.AppliedPolicyEditor"
+		    icon="icons/16/task-done.png"
+		    id="tr.org.liderahenk.liderconsole.core.editors.ExecutedPolicyEditor"
+		    name="%editor.executed.policy">
+	    </editor> 
+	    
+	</extension>
+
+	<!-- LISTENERS -->	
+   	<extension
+         point="org.apache.directory.studio.connectionlistener">
+      <connectionListener
+            class="tr.org.liderahenk.liderconsole.core.ldap.listeners.LdapConnectionListener"
+            description="LDAP Connection Listener"
+            id="tr.org.liderahenk.liderconsole.core.ldap.listeners.LdapConnectionListener"
+            name="LDAP Connection Listener">
+      </connectionListener>
+	</extension>
+
+	<!-- VIEWS -->
+   	<extension
+         point="org.eclipse.ui.views">
+      <category
+            id="tr.org.liderahenk.liderconsole.core.category"
+            name="%category.name">
+      </category>
+      <view
+            category="tr.org.liderahenk.liderconsole.core.category"
+            class="tr.org.liderahenk.liderconsole.core.views.SystemLogsView"
+            id="tr.org.liderahenk.liderconsole.core.views.SystemLogsView"
+            name="%view.system.logs"
+            icon="icons/16/log-book.png"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="false"
+            category="tr.org.liderahenk.liderconsole.core.category"
+            class="tr.org.liderahenk.liderconsole.core.views.TaskOverview"
+            icon="icons/16/task-play.png"
+            id="tr.org.liderahenk.liderconsole.core.views.TaskOverview"
+            name="%view.task.overview"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="false"
+            category="tr.org.liderahenk.liderconsole.core.category"
+            class="tr.org.liderahenk.liderconsole.core.views.SearchGroupView"
+            icon="icons/16/ldap.png"
+            id="tr.org.liderahenk.liderconsole.core.views.SearchGroupView"
+            name="%view.search.group"
+            restorable="true">
+      </view>
+      
+      <view
+            allowMultiple="false"
+            category="tr.org.liderahenk.liderconsole.core.category"
+            class="tr.org.liderahenk.liderconsole.core.views.LiderLoginView"
+            icon="icons/16/ldap.png"
+            id="tr.org.liderahenk.liderconsole.core.views.LiderLoginView"
+            name="%view.lider.main"
+            restorable="true">
+      </view>
+      
+      <view
+            allowMultiple="false"
+            category="tr.org.liderahenk.liderconsole.core.category"
+            class="tr.org.liderahenk.liderconsole.core.views.LdapBrowserView"
+            icon="icons/16/ldap.png"
+            id="tr.org.liderahenk.liderconsole.core.views.LdapBrowserView"
+            name="%view.ldap.browser"
+            restorable="true">
+      </view>
+      
+      <view
+            allowMultiple="false"
+            category="tr.org.liderahenk.liderconsole.core.category"
+            class="tr.org.liderahenk.liderconsole.core.views.LiderTaskLoggerView"
+            icon="icons/16/ldap.png"
+            id="tr.org.liderahenk.liderconsole.core.views.LiderTaskLoggerView"
+            name="%view.task.logger"
+            restorable="true">
+      </view>
+   </extension>
+   
+   <!-- SERVICES -->
+   <extension
+         point="org.eclipse.ui.services">
+      <sourceProvider
+            provider="tr.org.liderahenk.liderconsole.core.sourceproviders.LiderSourceProvider">
+         <variable
+               name="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available"
+               priorityLevel="workbench">
+         </variable>
+         <variable
+               name="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected"
+               priorityLevel="workbench">
+         </variable>
+         <variable
+               name="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected"
+               priorityLevel="workbench">
+         </variable>
+         <variable
+               name="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isMultipleEntriesSelected"
+               priorityLevel="workbench">
+         </variable>
+         <variable
+               name="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected"
+               priorityLevel="workbench">
+         </variable>
+         <variable
+               name="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected"
+               priorityLevel="workbench">
+         </variable>
+         <variable
+               name="tr.org.liderahenk.liderconsole.core.sourceproviders.main.privilegesForSelectedItem"
+               priorityLevel="workbench">
+         </variable>
+	  </sourceProvider>
+   </extension>
+   
+	<!-- VALUE EDITORS 	-->
+	<extension
+         point="org.apache.directory.studio.valueeditors">
+	     <valueEditor
+	          class="tr.org.liderahenk.liderconsole.core.handlers.LiderPrivilegeHandler"
+	          icon="resources/icons/imageeditor.gif"
+	          name="Lider Privilege Editor">
+	       <attribute attributeType="liderPrivilege"/>
+	    </valueEditor>
+   	</extension>
+   	
+   
+   	
+   	<!-- PREFERENCE PAGES -->
+	<extension
+         point="org.eclipse.ui.preferencePages">
+		<page
+			class="tr.org.liderahenk.liderconsole.core.preferences.PreferencesPage"
+            id="tr.org.liderahenk.liderconsole.core.preferencesPage"
+            name="%preference.lider.main">
+		</page>
+	</extension>
+	
+	<!-- PERSPECTIVES -->
+	<extension
+       point="org.eclipse.ui.perspectives">
+	    <perspective
+	          class="tr.org.liderahenk.liderconsole.core.perspectives.MainPerspective"
+	          fixed="true"
+	          icon="icons/32/liderahenk.png"
+	          id="tr.org.liderahenk.liderconsole.core.perspectives.MainPerspective"
+	          name="%view.main.perspective">
+	    </perspective>
+ 	</extension>
+ 	
+ 	<!-- HIDDEN ACTIVITIES -->
+ 	<extension
+       point="org.eclipse.ui.activities">
+		<activity id="tr.org.liderahenk.liderconsole.hidden.activities" name="Hidden activities"/>
+		<activityPatternBinding activityId="tr.org.liderahenk.liderconsole.hidden.activities" pattern=".*/org.apache.directory.studio.ldapbrowser.ui.views.searchlogs.SearchLogsView"/>				       
+		<activityPatternBinding activityId="tr.org.liderahenk.liderconsole.hidden.activities" pattern=".*/org.apache.directory.studio.ldapbrowser.ui.views.modificationlogs.ModificationLogsView"/>				       
+		<activityPatternBinding activityId="tr.org.liderahenk.liderconsole.hidden.activities" pattern=".*/org.eclipse.ui.views.ContentOutline"/>
+	</extension>
+	
+	<!-- PERSPECTIVE EXTENSIONS -->
+	<!-- Ignore warnings below. Relative views come from Apache DS API 
+ 	<extension
+       point="org.eclipse.ui.perspectiveExtensions">
+	    <perspectiveExtension
+	          targetID="tr.org.liderahenk.liderconsole.core.perspectives.MainPerspective">
+	       
+	       <view
+	             closeable="true"
+	             id="tr.org.liderahenk.liderconsole.core.views.TaskOverview"
+	             minimized="false"
+	             ratio="0.75"
+	             relationship="stack"
+	             relative="org.eclipse.ui.views.ContentOutline"
+	             moveable="true"
+	             standalone="false"
+	             showTitle="true"
+	             visible="true">
+	       </view>
+	       <view
+	             closeable="true"
+	             id="tr.org.liderahenk.liderconsole.core.views.SearchGroupView"
+	             minimized="false"
+	             ratio="0.75"
+	             relationship="stack"
+	             relative="org.apache.directory.studio.ldapbrowser.ui.views.browser.BrowserView"
+	             moveable="true"
+	             standalone="false"
+	             showTitle="true"
+	             visible="true">
+	       </view>
+	       <view
+	             closeable="true"
+	             id="tr.org.liderahenk.liderconsole.core.views.SystemLogsView"
+	             minimized="false"
+	             ratio="0.75"
+	             relationship="stack"
+	             relative="org.apache.directory.studio.ldapbrowser.ui.views.searchlogs.SearchLogsView"
+	             moveable="true"
+	             standalone="false"
+	             showTitle="true"
+	             visible="true">
+	       </view>
+	       
+	       <view
+	             closeable="true"
+	             id="tr.org.liderahenk.liderconsole.core.views.LdapBrowserView"
+	             minimized="false"
+	             ratio="0.75"
+	             relationship="stack"
+	             relative="tr.org.liderahenk.liderconsole.core.views.SystemLogsView"
+	             moveable="true"
+	             standalone="false"
+	             showTitle="true"
+	             visible="true">
+	       </view>
+	       
+	    </perspectiveExtension>
+ 	</extension>
+ 	
+ 	-->
+ 
+</plugin>

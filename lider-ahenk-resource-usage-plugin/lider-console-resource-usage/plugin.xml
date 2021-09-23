@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ResourceUsageTask"            
+            name="%command.resource.usage.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ResourceUsageAlertTask"            
+            name="%command.resource.usage.alert.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+       <handler
+            class="tr.org.liderahenk.resourceusage.handlers.ResourceUsageTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ResourceUsageTask">
+      </handler>
+	  <handler
+            class="tr.org.liderahenk.resourceusage.handlers.ResourceUsageAlertTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ResourceUsageAlertTask">
+      </handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+         
+		<menuContribution
+			locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+			<menu
+				id="tr.org.liderahenk.liderconsole.menus.ResourceUsage"
+				label="%plugin.label"
+				icon="icons/16/resource.png">
+			</menu>
+		</menuContribution>
+         
+      <menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ResourceUsage?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ResourceUsageAlertTask"
+                  id="tr.org.liderahenk.liderconsole.commands.ResourceUsageAlertTask"
+                  icon="icons/16/resource.png"
+                  tooltip="%command.resource.usage.alert.task">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ResourceUsage?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ResourceUsageTask"
+                  id="tr.org.liderahenk.liderconsole.commands.ResourceUsageTask"
+                  icon="icons/16/resource.png"
+                  tooltip="%command.resource.usage.task">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="RESOURCE_INFO_ALERT" label="%command.resource.usage.alert.task" />
+  		<task code="RESOURCE_INFO_FETCHER" label="%command.resource.usage.task" />
+  		<task code="SHUTDOWN" label="%command.shutdown.task" />
+		<plugin name="resource-usage" label="%plugin.label" />
+  	</extension>
+  	
+  	 <!-- Add extension point contribution for "task execution" dialogs --> 	  
+     <extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.resource.usage.task" pluginName="resource-usage" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.ResourceUsageTask" 
+  		description="Bir Ahenk için çalıştırılan bu görev, Ahenk makinesinin anlık kaynak kullanım bilgisini kullanıcıya sunmaktadır.Kaynak kullanımını görmek için tıklayınız.." 
+  		imagePath="resource.png"/>
+  	</extension>
+  	  	   <!-- 
+     <extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.resource.usage.alert.task" pluginName="resource-usage" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.ResourceUsageAlertTask" 
+  		description="Belirlenen eşik değerlere göre kaynak kullanımı alarmı üretmesini sağlayan eklentidir.&#xA;Kaynak kullanımı alarmı üretmek için tıklayınız.." 
+  		imagePath="resource.png"/>
+  	</extension>
+  	
+  	--> 
+  	
+  	
+</plugin>

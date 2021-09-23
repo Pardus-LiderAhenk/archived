@@ -1,0 +1,14 @@
+Source: ahenk-user-privilege
+Section: unknown
+Priority: optional
+Maintainer: TUBITAK ULAKBIM
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.liderahenk.org.tr
+
+Package: ahenk-user-privilege
+Version: 1.0.0
+Architecture: any
+Depends: python3 (>= 3), cpulimit, policykit-1
+Description: Lider Ahenk user privilege (polkit) plugin
+

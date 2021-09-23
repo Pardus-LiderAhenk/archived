@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ScreenshotTask"            
+            name="%command.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.screenshot.handlers.ScreenshotTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ScreenshotTask">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+	<!-- Add extension point contribution for "task execution" dialogs -->
+	<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+		<command
+           commandId="tr.org.liderahenk.liderconsole.commands.ScreenshotTask"
+           icon="icons/16/desktop-image-screenshot.png"
+           id="tr.org.liderahenk.liderconsole.commands.ScreenshotTask"
+           tooltip="%command.task">
+     <visibleWhen>
+        <and>
+           <with
+                 variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+              <equals
+                    value="true">
+              </equals>
+           </with>
+           <with
+                 variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+              <equals
+                    value="false">
+              </equals>
+           </with>
+           <with
+                 variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+              <equals
+                    value="false">
+              </equals>
+           </with>
+        </and>
+     </visibleWhen>
+		</command>
+	</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="take-screenshot" label="%command.task" />
+		<plugin name="screenshot" label="%plugin.label" />
+  	</extension>
+  	
+  	<!-- Add extension point contribution for "task execution" dialogs -->
+  	 <extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="screenshot" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.ScreenshotTask" selectionType="multi" 
+  		description="Herhangi bir ahenk makinesinden/lerinden ekran görüntüsü almayı sağlayan eklentidir.&#xA;Ekran görüntüsü almak için tıklayınız.." 
+  		imagePath="desktop-image-screenshot.png"/>
+  	</extension>
+  	
+</plugin>

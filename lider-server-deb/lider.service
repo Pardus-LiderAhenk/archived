@@ -1,0 +1,12 @@
+[Unit]
+Description=Starts Lider at system startup
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/bin/sh /usr/share/lider-server/bin/karaf server
+PIDFile=/var/run/lider.pid
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

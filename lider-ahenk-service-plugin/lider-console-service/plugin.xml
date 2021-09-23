@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category> 
+      <!--      
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ServiceTask"            
+            name="%command.task">
+      </command>
+      -->
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ServiceListTask"            
+            name="%command.task.servicelist">
+      </command>
+      
+       <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ServiceReportOnlineAhenk"
+            name="%command.servicereport.onlineahenk">
+      </command>
+      
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ServiceMonitorList"
+            name="%command.servicemonitor.editor">
+      </command>
+      
+      
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+       <!--
+       <handler
+            class="tr.org.liderahenk.service.handlers.ServiceTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ServiceTask">  
+      </handler>
+      -->
+       <handler
+            class="tr.org.liderahenk.service.handlers.ServiceListTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ServiceListTask">  
+      </handler>
+      
+       <handler
+            class="tr.org.liderahenk.service.handlers.ServiceReportOnlineAhenkHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ServiceReportOnlineAhenk">
+      </handler>
+      
+        <handler
+            class="tr.org.liderahenk.service.handlers.ServiceMonitorListHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ServiceMonitorList">
+      </handler>
+       
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+               
+		<menuContribution
+			locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+			<menu
+				id="tr.org.liderahenk.liderconsole.menus.Service"
+				label="%plugin.label"
+				icon="icons/16/service.png">
+			</menu>
+		</menuContribution>
+		
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+      	<!--
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.Service?after=additions">
+ 				<command
+           commandId="tr.org.liderahenk.liderconsole.commands.ServiceTask"
+           icon="icons/16/service.png"
+           id="tr.org.liderahenk.liderconsole.commands.ServiceTask"
+           tooltip="%command.manage.services.task">
+                  	<visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+		-->
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.Service?after=additions">
+ 				<command
+           commandId="tr.org.liderahenk.liderconsole.commands.ServiceListTask"
+           icon="icons/16/services.png"
+           id="tr.org.liderahenk.liderconsole.commands.ServiceListTask"
+           tooltip="%command.list.services.task">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+		
+		
+		
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+  		<command
+           	  commandId="tr.org.liderahenk.liderconsole.commands.ServiceReportOnlineAhenk"
+	          id="tr.org.liderahenk.liderconsole.commands.ServiceReportOnlineAhenk"
+	          icon="icons/16/services.png"
+	          tooltip="%command.servicereport.onlineahenk">
+        </command>
+  			
+    	</menuContribution>
+    	
+    	<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+  		<command
+           	  commandId="tr.org.liderahenk.liderconsole.commands.ServiceMonitorList"
+	          id="tr.org.liderahenk.liderconsole.commands.ServiceMonitorList"
+	          icon="icons/16/services.png"
+	          tooltip="%command.servicemonitor.editor">
+        </command>
+  			
+    	</menuContribution>
+		
+		
+  </extension>
+  
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="SERVICE_LIST" label="%command.manage.services.task" />
+  		<task code="SERVICE_MANAGEMENT" label="%command.manage.services.task" />
+  		<task code="GET_SERVICES" label="%command.list.services.task" />
+		<plugin name="service" label="%plugin.label" />
+  	</extension>
+  	
+  	<!-- Add extension point contribution for "task execution" dialogs -->
+  	<!--
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.manage.services.task" pluginName="service" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.ServiceTask" selectionType="multi" 
+  		description="Ahenk makine/leri için çalıştırılan bu eklenti, makine üzerinde bulunan servisleri yönetmek için kullanılır.&#xA;Servis yönetimi için tıklayınız.." 
+  		imagePath="service.png"/>
+  	</extension>
+  	-->
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task.servicelist" pluginName="service" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.ServiceListTask" 
+  		description="Ahenk makinesi üzerinde varolan tm servislerin durumu listelemek ve yönetmek için kullanılır.&#xA;Servis listesi için tıklayınız.."
+  		imagePath="services.png"/>
+  	</extension>
+  	
+  	 	<!-- EDITORS -->
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+		    class="tr.org.liderahenk.service.editors.ServiceReportOnlineAhenkEditor"
+		    icon="icons/16/services.png"
+		    id="tr.org.liderahenk.service.editors.ServiceReportOnlineAhenkEditor"
+		    name="%command.servicereport.onlineahenk">
+	    </editor> 	
+	    
+	    
+	    <editor
+		    class="tr.org.liderahenk.service.editors.ServiceMonitorListEditor"
+		    icon="icons/16/services.png"
+		    id="tr.org.liderahenk.service.editors.ServiceMonitorListEditor"
+		    name="%command.servicemonitor.editor">
+	    </editor> 
+	    
+	    	
+	</extension>
+  
+</plugin>

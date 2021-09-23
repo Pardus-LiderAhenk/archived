@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.DiskQuotaProfile"
+            name="%command.profile">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.DiskQuotaTask"
+            name="%command.task">
+      </command>
+    <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.DiskQuotaPolicyList"            
+            name="%editor.disk.quota">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+		<!-- Profile handler -->
+		<handler
+            class="tr.org.liderahenk.disk.quota.handlers.DiskQuotaProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaProfile">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      	</handler>
+  <handler
+        class="tr.org.liderahenk.disk.quota.handlers.DiskQuotaTaskHandler"
+        commandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaTask">
+  </handler>
+
+
+      	<!-- Editor handler -->
+       <handler
+            class="tr.org.liderahenk.disk.quota.handlers.DiskQuotaPolicyListHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaPolicyList">
+      </handler>
+      	
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+         
+      <menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+  		<command
+           	  commandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaPolicyList"
+	          id="tr.org.liderahenk.liderconsole.commands.DiskQuotaPolicyList"
+	          icon="icons/16/diskquota.png"
+	          tooltip="%editor.disk.quota">
+        </command>
+         </menuContribution>
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+	            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+           commandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaProfile"
+           icon="icons/16/diskquota.png"
+           id="tr.org.liderahenk.liderconsole.commands.DiskQuotaProfile"
+           tooltip="%command.profile">
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+		</menuContribution>
+  <menuContribution
+        allPopups="false"
+        locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+     <command
+           commandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaTask"
+           icon="icons/16/diskquota.png"
+           id="tr.org.liderahenk.liderconsole.commands.DiskQuotaTask"
+           tooltip="%command.task">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+     </command>
+  </menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+        point="tr.org.liderahenk.liderconsole.core.policymenu">
+     <policyItem
+           label="%command.profile"
+           pluginName="disk-quota"
+           pluginVersion="1.0.0"
+           profileCommandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaProfile">
+     </policyItem>
+  </extension>
+  
+	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+        point="tr.org.liderahenk.liderconsole.core.taskmenu">
+     <taskItem
+           label="%command.task"
+           pluginName="disk-quota"
+           pluginVersion="1.0.0"
+           taskCommandId="tr.org.liderahenk.liderconsole.commands.DiskQuotaTask" 
+           description="Herhangi bir kullanıcıya ait soft kota ve hard kota sınırlarının belirlenmesiyle bir makine üzerindeki bütün kullanıcıların kota durumlarının görülmesini sağlar.&#xA;Mevcut kota durumunu görmek için tıklayınız.."
+           imagePath="diskquota.png"> 
+           
+     </taskItem>
+  </extension>
+  
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="get_quota" label="%command.task" />
+		<plugin name="disk-quota" label="%plugin.label" />
+  	</extension>
+  	
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+		    class="tr.org.liderahenk.disk.quota.editors.DiskQutaPolicyListEditor"
+		    icon="icons/16/diskquota.png"
+		    id="tr.org.liderahenk.disk.quota.editors.DiskQutaPolicyListEditor"
+		    name="%editor.disk.quota">
+	    </editor> 		
+	</extension>
+  	
+</plugin>

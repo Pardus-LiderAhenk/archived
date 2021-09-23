@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.WakeMachineTask"            
+            name="%command.wake.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ShutDownTask"            
+            name="%command.shutdown.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.WakeAhenksTask"
+            name="%command.wake.ahenks.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+      	<!-- Task handler -->
+      <handler
+            class="tr.org.liderahenk.wol.handlers.WakeMachineTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.WakeMachineTask">
+      </handler>
+      <handler
+            class="tr.org.liderahenk.wol.handlers.ShutDownTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ShutDownTask">
+      </handler>
+      <handler
+            class="tr.org.liderahenk.wol.handlers.WakeAhenksTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.WakeAhenksTask">
+      </handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+         
+		<menuContribution
+			locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+			<menu
+				id="tr.org.liderahenk.liderconsole.menus.Wol"
+				label="%menu.label.wol">
+			</menu>
+		</menuContribution>
+
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.Wol?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.WakeMachineTask"
+                  id="tr.org.liderahenk.liderconsole.commands.WakeMachineTask"
+                  tooltip="%command.wake.task">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.Wol?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ShutDownTask"
+                  id="tr.org.liderahenk.liderconsole.commands.ShutDownTask"
+                  tooltip="%command.shutdown.task">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+  		<menuContribution
+	        allPopups="false"
+	        locationURI="popup:tr.org.liderahenk.liderconsole.menus.Wol?after=additions">
+		     <command
+		           commandId="tr.org.liderahenk.liderconsole.commands.WakeAhenksTask"
+		           id="tr.org.liderahenk.liderconsole.commands.WakeAhenksTask"
+		           tooltip="%command.wake.ahenks.task">
+		        <visibleWhen>
+		           <and>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		                 <equals
+		                       value="true">
+		                 </equals>
+		              </with>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+		                 <equals
+		                       value="false">
+		                 </equals>
+		              </with>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+		                 <equals
+		                       value="false">
+		                 </equals>
+		              </with>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+		                 <equals
+		                       value="false">
+		                 </equals>
+		              </with>
+		           </and>
+		        </visibleWhen>
+		     </command>
+  	</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="WAKE-MACHINE" label="%command.wake.task" />
+  		<task code="WAKE-AHENK-MACHINES" label="%command.wake.ahenks.task" />
+  		<task code="SHUT-DOWN-MACHINE" label="%command.shutdown.task" />
+		<plugin name="wol" label="%plugin.label" />
+  	</extension>
+  	
+  	<!-- Add extension point contribution for "task execution" dialogs -->
+  	
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.shutdown.task" pluginName="wol" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.ShutDownTask" selectionType="multi" 
+  		description="Ahenk makinesi/lerini kapatmak için tılayınız.."
+  		imagePath="shutdown.png"/>
+  	</extension>
+  
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.wake.ahenks.task" pluginName="wol" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.WakeAhenksTask" 
+  		selectionType="multi" description="Seçili ahenk makine/leri uyandırmak için kullanılan eklentidir.&#xA;Makine/leri uyandırmak için tıklayınız.. "
+  		imagePath="wol.png"/>
+  	</extension>
+  	
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.wake.task" pluginName="wol" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.WakeMachineTask" 
+  		description="Bir makineyi ya da makineleri uyandırmak için eklentinin kurulu olduğu çevrimiçi herhangi bir Ahenk makinesi üzerinden uyandırma komutu gönderilir.&#xA;Makine uyandırmak için tıklayınız.."
+  		imagePath="wol.png"/>
+  	</extension>
+  
+  	
+  
+</plugin>

@@ -1,0 +1,29 @@
+#! /bin/bash
+case "$1" in
+  start)
+    echo "Starting server"
+    # Start the daemon
+   
+    systemctl start lider.service
+    ;;
+  stop)
+    echo "Stopping server"
+    systemctl stop lider.service
+    ;;
+  restart)
+    echo "Restarting server"
+    systemctl restart lider.service
+    ;;
+  status)
+    echo "Server Status"
+    # Status of the daemon
+    systemctl status lider.service
+    ;;
+  *)
+    # Refuse to do other stuff
+    echo "Usage: /etc/init.d/lider-server {start|stop|restart|status}"
+    exit 1
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,42 @@
+version: '2'
+services:
+  openldap:
+    image: ibasaran/openldap
+    container_name: liderldap
+    ports:
+      - 389:389
+  ejabberd:
+    image: ibasaran/ejabberd
+    container_name: liderxmpp
+    tty: true
+    ports:
+      - 5222:5222
+      - 5269:5269
+      - 5280:5280
+    environment:
+      ERLANG_NODE: "liderahenk"
+      XMPP_DOMAIN: "im.liderahenk.org"
+      EJABBERD_ADMINS: "admin@im.liderahenk.org"
+      EJABBERD_USERS: "admin@im.liderahenk.org:secret lider_sunucu@im.liderahenk.org:secret"
+      EJABBERD_MOD_ADMIN_EXTRA: "true"
+      EJABBERD_MOD_MUC_ADMIN: "true"
+      EJABBERD_AUTH_METHOD: "internal anonymous ldap"
+      EJABBERD_LDAP_SERVERS: "openldap"
+      EJABBERD_LDAP_ROOTDN: "cn=admin,dc=liderahenk,dc=org"
+      EJABBERD_LDAP_PASSWORD: "secret"
+      EJABBERD_LDAP_BASE: "dc=liderahenk,dc=org"
+      EJABBERD_LDAP_UIDS: "uid:%u"
+      EJABBERD_STARTTLS: "false"
+      EJABBERD_S2S_SSL: "false"
+      EJABBERD_HTTPS: "false"
+    depends_on:
+      - openldap
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    volumes:
+      - /home/ismail/development/workspace/local_usr/mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: "secret"

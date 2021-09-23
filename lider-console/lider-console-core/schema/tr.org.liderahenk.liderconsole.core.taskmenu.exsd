@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="tr.org.liderahenk.liderconsole.core" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="tr.org.liderahenk.liderconsole.core" id="tr.org.liderahenk.liderconsole.core.taskmenu" name="%extension.point.task.menu"/>
+      </appinfo>
+      <documentation>
+         This extension point can be used to contribute to task execution dialogs.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="taskItem"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="taskItem">
+      <complexType>
+         <attribute name="label" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Plugin label used for combo box.
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="pluginName" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Plugin name used in Lider bundle (same as IPluginInfo.getPluginVersion()).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="pluginVersion" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Plugin version used in Lider bundle (same as IPluginInfo.getPluginVersion()).
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="taskCommandId" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Command ID used for plugin profile handler
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="selectionType" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="imagePath" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.0.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         &lt;extension
+ point=&quot;tr.org.liderahenk.liderconsole.core.policymenu&quot;&gt;
+ &lt;policyItem label=&quot;%command.browser.profile&quot; pluginName=&quot;lider-browser&quot; pluginVersion=&quot;1.0.0&quot; profileCommandId=&quot;tr.org.liderahenk.liderconsole.commands.BrowserProfile&quot; /&gt;
+&lt;/extension&gt;
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="implementation"/>
+      </appinfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+
+</schema>

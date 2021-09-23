@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.BackupProfile"            
+            name="%command.profile">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.BackupTask"            
+            name="%command.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.BackupWithMonitoringTask"            
+            name="%command.task">
+      </command>
+      
+      <!-- 
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.RestoreTask"            
+            name="%restore.task">
+      </command>
+      -->
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.BackupTaskList"            
+            name="%editor.backup">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.BackupServerConf"            
+            name="%command.backup.server.conf">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.backup.handlers.BackupProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.BackupProfile">
+      	</handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.backup.handlers.BackupTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.BackupTask">
+      </handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.backup.handlers.BackupWithMonitoringTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.BackupWithMonitoringTask">
+      </handler>
+      	
+      	<!-- Task handler 
+       <handler
+            class="tr.org.liderahenk.backup.handlers.RestoreTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.RestoreTask">
+      </handler>
+      
+      -->
+      	
+      	<!-- Editor handler -->
+       <handler
+            class="tr.org.liderahenk.backup.handlers.BackupTaskListHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.BackupTaskList">
+      </handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.backup.handlers.BackupServerConfHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.BackupServerConf">
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.BackupProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.BackupProfile"
+                  tooltip="%command.profile"
+                  icon="icons/16/backup.png">
+           		</command>
+		</menuContribution>
+      
+      	<!-- 
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.BackupTask"
+                  id="tr.org.liderahenk.liderconsole.commands.BackupTask"
+                  tooltip="%command.task"
+                  icon="icons/16/backup.png">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+		-->
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.BackupWithMonitoringTask"
+                  id="tr.org.liderahenk.liderconsole.commands.BackupWithMonitoringTask"
+                  tooltip="%command.task"
+                  icon="icons/16/backup.png">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.RestoreTask"
+                  id="tr.org.liderahenk.liderconsole.commands.RestoreTask"
+                  tooltip="%command.task"
+                  icon="icons/16/backup.png">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+		
+		 -->
+		
+	      
+      <menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+  		<command
+           	  commandId="tr.org.liderahenk.liderconsole.commands.BackupTaskList"
+	          id="tr.org.liderahenk.liderconsole.commands.BackupTaskList"
+	          icon="icons/16/backup.png"
+	          tooltip="%editor.backup">
+        </command>
+  		<command
+           	  commandId="tr.org.liderahenk.liderconsole.commands.BackupServerConf"
+	          id="tr.org.liderahenk.liderconsole.commands.BackupServerConf"
+	          icon="icons/16/backup.png"
+	          tooltip="%command.backup.server.conf">
+        </command>
+    </menuContribution>
+		
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="backup" 
+  		pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.BackupProfile"
+  		 />
+  	</extension>
+  		<!-- Add extension point contribution for "task execution" dialogs -->
+<!--  	
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="backup" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.BackupTask" selectionType="multi" description="Dizinlerin anlık olarak yedeklenmesini sağlayan eklentidir.&#xA;Yedek almak için tıklayınız.." imagePath="backup.png"/>
+  	</extension>
+-->
+  		<!-- Add extension point contribution for "task execution" dialogs -->
+  	
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="backup" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.BackupWithMonitoringTask" selectionType="multi" description="Dizinlerin anlık olarak yedeklenmesini ve izlenmesini sağlayan eklentidir.&#xA;Yedek almak için tıklayınız.." imagePath="backup.png"/>
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="backup_task" label="%command.task" />
+  		<task code="backup_with_monitoring_task" label="%command.task" />
+  		<plugin name="backup" label="%plugin.label" />
+  	</extension>
+  	
+  	 	<!-- EDITORS -->
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+		    class="tr.org.liderahenk.backup.editors.BackupTaskListEditor"
+		    icon="icons/16/backup.png"
+		    id="tr.org.liderahenk.backup.editors.BackupTaskListEditor"
+		    name="%editor.backup">
+	    </editor> 		
+	</extension>
+	
+</plugin>

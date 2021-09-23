@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupTask"            
+            name="%usb.fuse.group">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ListUsbFuseGroupStateTask"            
+            name="%usb.fuse.group.state">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupResult"            
+            name="%usb.fuse.group.state">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.usb.ltsp.handlers.UsbFuseGroupHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupTask">
+      </handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.usb.ltsp.handlers.AgentUsbFuseGroupResultHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ListUsbFuseGroupStateTask">
+      </handler>
+      	
+       <handler
+            class="tr.org.liderahenk.usb.ltsp.handlers.UsbFuseGroupResultHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupResult">
+      </handler>
+      	
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupTask"
+                  id="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupTask"
+                  tooltip="%usb.fuse.group"
+                  icon="icons/16/usb.png">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ListUsbFuseGroupStateTask"
+                  id="tr.org.liderahenk.liderconsole.commands.ListUsbFuseGroupStateTask"
+                  tooltip="%usb.fuse.group.state"
+                  icon="icons/16/usb.png">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+		
+	      
+      <menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+  		<command
+           	  commandId="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupResult"
+	          id="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupResult"
+	          icon="icons/16/usb.png"
+	          tooltip="%usb.fuse.group.state">
+        </command>
+    </menuContribution>
+		
+  </extension>
+  
+  
+  	<extension
+		point="org.eclipse.ui.editors">
+		
+		<editor
+		    class="tr.org.liderahenk.usb.ltsp.editors.UsbFuseGroupResultEditor"
+		    icon="icons/16/usb.png"
+		    id="tr.org.liderahenk.usb.ltsp.editors.UsbFuseGroupResultEditor"
+		    name="%usb.fuse.group.state">
+	    </editor>
+		
+	</extension>
+  
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%usb.fuse.group" pluginName="usb-ltsp" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.UsbFuseGroupTask" selectionType="multi" description="Kullanıcılara USB yetkisi vermek ya da yetkiyi kaldırmak için tıklayınız..." imagePath="usb.png"/>
+  	<!--	<taskItem label="%usb.fuse.group.state" pluginName="usb-ltsp" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.ListUsbFuseGroupStateTask" selectionType="single" description="Seçilen Ahenk'te yapılan USB yetki işlemlerini görüntülemek için tıklayınız..." imagePath="usb.png"/>
+  	-->
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="usb_fuse_group" label="%usb.fuse.group" />
+  		<task code="list_usb_fuse_group_status" label="%usb.fuse.group.state" />
+  		<plugin name="usb-ltsp" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>     
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.CheckPackageTask"            
+            name="%command.checkpackage.task">
+      </command>    
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.PackagesTask"            
+            name="%command.addremovepackage.task">
+      </command>     
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.PackageManagerTask"            
+            name="%command.package.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.PackageSourcesTask"            
+            name="%command.task">
+      </command>
+      <!--
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.GetExecutionInfoTask"            
+            name="%command.getExecutionInfo.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.PackageArchiveTask"            
+            name="%command.packagearchive.task">
+      </command>
+      -->
+    <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.PackageManagerTaskList"            
+            name="%editor.package.manager">
+      </command>    
+   </extension>
+   
+	<extension
+       point="org.eclipse.ui.handlers">
+       <!--
+       <handler
+            class="tr.org.liderahenk.packagemanager.handlers.PackageArchiveTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.PackageArchiveTask">
+      </handler>
+       <handler
+            class="tr.org.liderahenk.packagemanager.handlers.GetExecutionInfoTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.GetExecutionInfoTask">
+      </handler>
+      -->
+       <handler
+            class="tr.org.liderahenk.packagemanager.handlers.PackageSourcesTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.PackageSourcesTask">
+      </handler>
+       <handler
+            class="tr.org.liderahenk.packagemanager.handlers.PackageManagerTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.PackageManagerTask">
+      </handler>
+       <handler
+            class="tr.org.liderahenk.packagemanager.handlers.PackagesTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.PackagesTask">
+      </handler>
+       <handler
+            class="tr.org.liderahenk.packagemanager.handlers.CheckPackageTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.CheckPackageTask">
+      </handler>
+      	<!-- Editor handler -->
+       <handler
+            class="tr.org.liderahenk.packagemanager.handlers.PackageManagerTaskListHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.PackageManagerTaskList">
+      </handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+         
+         
+      <menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+  		<command
+           	  commandId="tr.org.liderahenk.liderconsole.commands.PackageManagerTaskList"
+	          id="tr.org.liderahenk.liderconsole.commands.PackageManagerTaskList"
+	          icon="icons/16/package-managament.png"
+	          tooltip="%editor.package.manager">
+        </command>
+    </menuContribution>
+         
+		<menuContribution
+			locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+			<menu
+				id="tr.org.liderahenk.liderconsole.menus.PackageManager"
+				label="%menu.label.package.manager"
+				icon="icons/16/package-managament.png">
+			</menu>
+		</menuContribution>
+         
+	<!-- Add extension point contribution for "task execution" dialogs -->
+	<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.PackageManager?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.PackagesTask"
+                  id="tr.org.liderahenk.liderconsole.commands.PackagesTask"
+                  tooltip="%command.addremovepackage.task">
+                  	<visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+		
+         
+	<!-- Add extension point contribution for "task execution" dialogs -->
+	<!--
+	<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.PackageManager?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.GetExecutionInfoTask"
+                  id="tr.org.liderahenk.liderconsole.commands.GetExecutionInfoTask"
+                  tooltip="%command.getExecutionInfo.task">
+                  	<visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+		-->
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.PackageManager?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.PackageManagerTask"
+                  id="tr.org.liderahenk.liderconsole.commands.PackageManagerTask"
+                  tooltip="%command.package.task">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+		
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.PackageManager?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.PackageSourcesTask"
+                  id="tr.org.liderahenk.liderconsole.commands.PackageSourcesTask"
+                  tooltip="%command.task">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+         
+	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.PackageManager?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.PackageArchiveTask"
+                  id="tr.org.liderahenk.liderconsole.commands.PackageArchiveTask"
+                  tooltip="%command.packagearchive.task">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+		
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.PackageManager?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.CheckPackageTask"
+                  id="tr.org.liderahenk.liderconsole.commands.CheckPackageTask"
+                  tooltip="%command.task"> 
+                  	<visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+  <!-- Add extension point contribution for i18n messages -->
+  	<extension
+         point="tr.org.liderahenk.liderconsole.core.i18n">
+         <task code="PACKAGE_SOURCES" label="%command.task" />
+         <task code="PACKAGE_MANAGEMENT" label="%command.package.task" />
+         <!--<task code="GET_EXECUTION_INFO" label="%command.getExecutionInfo.task" />-->
+         <task code="PACKAGES" label="%command.addremovepackage.task" />
+         <!--<task code="PACKAGE_ARCHIVE" label="%command.packagearchive.task" />-->
+         <task code="CHECK_PACKAGE" label="%command.checkpackage.task" />
+        <plugin name="package-manager" label="%plugin.label" />
+     </extension>
+     
+     
+       	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.checkpackage.task" pluginName="package-manager" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.CheckPackageTask" selectionType="multi" description="Adı ve (isteğe bağlı olarak) sürüm bilgisi belirtilen paketin seçilmiş olan Ahenk/ler içerisinde yüklü olup olmadığı bilgisini tabloda kullanıcıya sunar.&#xA;Paket kontrolü yapmak için tıklayınız..." 
+  		imagePath="package-managament.png"/>
+  	</extension>
+       	<!-- Add extension point contribution for "task execution" dialogs -->
+    <!--
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.packagearchive.task" pluginName="package-manager" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.PackageArchiveTask" description="Bir Ahenk makine için çalışan bu görev, ‘Paket Adı’ bölümüne girilen paket ismini içeren paketlerin yüklenme, güncellenme, kurulum zamanı bilgilerini kullanıcıya sunar." 
+  		imagePath="package-managament.png"/>
+  	</extension>
+    -->
+       	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.addremovepackage.task" pluginName="package-manager" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.PackagesTask" selectionType="multi" description="Belirtilen bir ya da daha fazla deponun içeriğindeki paketleri listeler. Listelenen bu paketler arasından bir ya da daha çok paket şeçilip yükleme/kaldırma işlemleri yapılabilir.&#xA;Paket ve Depo yönetimi için tıklayınız..." 
+  		imagePath="package-managament.png"/>
+  	</extension>
+       	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.package.task" pluginName="package-manager" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.PackageManagerTask" description="Bir Ahenk makine için çalışan bu görev, makinedeki tüm paketleri, yüklü olup olmadığı bilgisiyle kullanıcıya sunar. Kulanıcı buradan istenen durum bilgisini değiştirerek her bir paket için yükleme ve kaldırma işlemi yapabilmektedir.&#xA;Paket yüklemek/kaldırmak için tıklayınız.." 
+  		imagePath="package-managament.png"/>
+  	</extension>
+       	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="package-manager" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.PackageSourcesTask" description="Bir Ahenk makine için çalışan bu görev, makinede bulunan tüm depoların listelenmesini, varolan depoları düzenlemeyi, silmeyi veya yeni bir depo eklemeyi sağlamaktadır.&#xA;Paket depeolarını yönetimi için tıklayınız..  " 
+  		imagePath="package-managament.png"/>
+  	</extension>
+       	<!-- Add extension point contribution for "task execution" dialogs -->
+    <!--
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.getExecutionInfo.task" pluginName="package-manager" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.GetExecutionInfoTask" selectionType="multi" description="Birçok Ahenk makinede aynı anda çalışabilen bu görev, belirli bir kullanıcı ya da komut için kac kere işletildiği bilgisi, işletim tarihleri, işletim süreleri gibi bilgileri tabloda sunan ve aynı zamanda ileride raporunu alabilmek adına bu bilgileri, eş zamanlı olarak, veri tabanına kaydeden
+görevdir.&#xA;Uygulama çalıştırma istatistikleri için tıklayınız.." 
+       imagePath="package-managament.png"/>
+  	</extension>
+    -->
+     	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+		    class="tr.org.liderahenk.packagemanager.editors.PackageManagerTaskListEditor"
+		    icon="icons/16/package-managament.png"
+		    id="tr.org.liderahenk.packagemanager.editors.PackageManagerTaskListEditor"
+		    name="%editor.package.manager">
+	    </editor>
+	</extension>
+     
+</plugin>

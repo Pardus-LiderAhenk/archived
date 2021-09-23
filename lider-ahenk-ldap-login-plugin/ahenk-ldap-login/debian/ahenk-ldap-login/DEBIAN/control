@@ -1,0 +1,10 @@
+Package: ahenk-ldap-login
+Version: 1.1
+Architecture: amd64
+Maintainer: TUBITAK ULAKBIM
+Installed-Size: 37
+Depends: python3 (>= 3)
+Section: unknown
+Priority: optional
+Homepage: http://www.liderahenk.org.tr
+Description: Lider Ahenk ahenk-ldap-login plugin

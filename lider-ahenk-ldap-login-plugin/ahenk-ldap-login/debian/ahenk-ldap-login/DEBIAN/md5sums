@@ -1,0 +1,8 @@
+7a8872a75905ddea3cf7be6f218d980a  usr/share/ahenk/plugins/ldap-login/config-files/ldap
+04bbd36c005cce6d7d4dc9b24014373f  usr/share/ahenk/plugins/ldap-login/config-files/pam_script
+69c1945c1e3a5fcac71be3dba007cbd9  usr/share/ahenk/plugins/ldap-login/execute_cancel_ldap_login.py
+db188846ada196252b510234f771c10a  usr/share/ahenk/plugins/ldap-login/execute_ldap_login.py
+3c3260b124c9bfa19eb22af1b9604274  usr/share/ahenk/plugins/ldap-login/init.py
+0d5b93f30f89e76402e18d8197a887e7  usr/share/ahenk/plugins/ldap-login/main.py
+88ce885beb06637f4aa6d13fa92057a7  usr/share/ahenk/plugins/ldap-login/scripts/ldap-login.sh
+ddf7baa2a1cdcfa4678a0a3c916b7fd6  usr/share/doc/ahenk-ldap-login/changelog.gz

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.RsyslogProfile"            
+            name="%command.profile">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.rsyslog.handlers.RsyslogProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.RsyslogProfile">
+      	</handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.RsyslogProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.RsyslogProfile"
+                  tooltip="%command.profile"
+                  icon="icons/16/rsyslog.png">
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="rsyslog" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.RsyslogProfile" />
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+		<plugin name="rsyslog" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

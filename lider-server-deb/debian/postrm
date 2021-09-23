@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e
+
+if [ -d /usr/share/lider-server ] && [ "$1" = "purge" ];then
+
+	systemctl stop lider.service
+	rm -rf /usr/share/lider-server
+	systemctl daemon-reload
+fi

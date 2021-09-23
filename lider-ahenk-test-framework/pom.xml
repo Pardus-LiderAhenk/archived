@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>tr.org.liderahenk</groupId>
+	<artifactId>lider-test</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Lider Ahenk Test Framework</name>
+
+	<properties>
+		<lider-ahenk-test-framework-version>1.0.0-SNAPSHOT</lider-ahenk-test-framework-version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>tr.org.liderahenk</groupId>
+				<artifactId>lider-pax-test</artifactId>
+				<version>${lider-ahenk-test-framework-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tr.org.liderahenk</groupId>
+				<artifactId>lider-embedded-xmpp</artifactId>
+				<version>${lider-ahenk-test-framework-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tr.org.liderahenk</groupId>
+				<artifactId>lider-embedded-ldap</artifactId>
+				<version>${lider-ahenk-test-framework-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tr.org.liderahenk</groupId>
+				<artifactId>lider-embedded-db</artifactId>
+				<version>${lider-ahenk-test-framework-version}</version>
+			</dependency>
+			<dependency>
+				<groupId>tr.org.liderahenk</groupId>
+				<artifactId>lider-test-samples</artifactId>
+				<version>${lider-ahenk-test-framework-version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+	<modules>
+		<module>lider-pax-test</module>
+		<module>lider-embedded-xmpp</module>
+		<module>lider-embedded-ldap</module>
+		<module>lider-embedded-db</module>
+		<!-- <module>lider-test-samples</module> -->
+	</modules>
+</project>

@@ -1,0 +1,3 @@
+#!/bin/bash
+echo "Lider-Server Açılıyor.."
+/bin/sh /usr/share/lider-server/bin/client

@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>tr.org.liderahenk</groupId>
+		<artifactId>lider-test</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>lider-embedded-xmpp</artifactId>
+	<name>lider-embedded-xmpp</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<slf4j.version>1.7.1</slf4j.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.apache.servicemix.bundles</groupId>
+			<artifactId>org.apache.servicemix.bundles.vysper</artifactId>
+			<version>0.7_1</version>
+		</dependency>
+
+
+		<!-- <dependency> <groupId>openim</groupId> <artifactId>openim-server-impl</artifactId> 
+			<version>1.2.1</version> </dependency> -->
+		<!-- <dependency> <groupId>org.apache.vysper</groupId> <artifactId>vysper-core</artifactId> 
+			<version>0.7</version> </dependency> <dependency> <groupId>org.apache.vysper</groupId> 
+			<artifactId>vysper-extensions</artifactId> <version>0.7</version> <type>pom</type> 
+			</dependency> <dependency> <groupId>org.apache.vysper.extensions</groupId> 
+			<artifactId>xep0045-muc</artifactId> <version>0.7</version> </dependency> 
+			<dependency> <groupId>org.apache.vysper.extensions</groupId> <artifactId>xep0060-pubsub</artifactId> 
+			<version>0.7</version> </dependency> <dependency> <groupId>org.apache.vysper.extensions</groupId> 
+			<artifactId>xep0124-xep0206-bosh</artifactId> <version>0.7</version> </dependency> 
+			<dependency> <groupId>org.apache.vysper</groupId> <artifactId>nbxml</artifactId> 
+			<version>0.7</version> </dependency> <dependency> <groupId>org.apache.vysper.extensions</groupId> 
+			<artifactId>vysper-websockets</artifactId> <version>0.7</version> </dependency> -->
+		<!-- <dependency> <groupId>org.apache.vysper.extensions</groupId> <artifactId>vysper-server</artifactId> 
+			<version>0.7</version> </dependency> -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-log4j12</artifactId> 
+			</dependency> -->
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-core</artifactId>
+			<version>2.0.7</version>
+		</dependency>
+	</dependencies>
+	<!-- TODO start xmpp server in pre-integration test and stop in post-integration-test -->
+	<build>
+		<plugins>
+			<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> 
+				<executions> <execution> <id>start-apacheds</id> <phase>pre-integration-test</phase> 
+				<goals> <goal>java</goal> </goals> <configuration> <fork>true</fork> <mainClass>tr.org.pardus.mys.embedded.xmpp.server.ServerRunner</mainClass> 
+				</configuration> </execution> </executions> </plugin> -->
+		</plugins>
+	</build>
+</project>
+

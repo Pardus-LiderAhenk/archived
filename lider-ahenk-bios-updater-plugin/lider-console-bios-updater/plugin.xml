@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.BiosUpdaterTask"            
+            name="%command.update.bios.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.biosupdater.handlers.BiosUpdaterTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.BiosUpdaterTask">
+    
+      </handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.BiosUpdaterTask"
+                  id="tr.org.liderahenk.liderconsole.commands.BiosUpdaterTask"
+                  tooltip="%command.update.bios.task">
+                  	<visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="READ_BIOS_INFO" label="%command.read.bios.info.task" />
+  		<task code="UPDATE_BIOS" label="%command.update.bios.task" />
+		<plugin name="bios-updater" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+
+	<prerequisites>
+		<maven>3.0</maven>
+	</prerequisites>
+
+	<groupId>tr.org.liderahenk</groupId>
+	<artifactId>lider-ahenk-installer-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Lider Ahenk Installer Parent POM</name>
+	<packaging>pom</packaging>
+
+	<properties>
+		<java.version>1.7</java.version>
+		<tycho.version>0.23.0</tycho.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version>
+		<findbugs.maven.plugin.version>3.0.4</findbugs.maven.plugin.version>
+		<checkstyle.maven.plugin.version>2.12</checkstyle.maven.plugin.version>
+		<mars.repo.url>http://download.eclipse.org/releases/mars</mars.repo.url>
+		<orbit.repo.url>http://download.eclipse.org/tools/orbit/downloads/drops/R20151118145958/repository</orbit.repo.url>
+		<mars.update.repo.url>http://download.eclipse.org/eclipse/updates/4.5</mars.update.repo.url>
+		<p2.maven.plugin.local.repo.url>http://localhost:8080/site/installer</p2.maven.plugin.local.repo.url>
+		<!--<babel.update.repo.url>http://download.eclipse.org/technology/babel/update-site/R0.14.1/mars/</babel.update.repo.url>--> 
+		<babel.update.repo.url>http://archive.eclipse.org/technology/babel/update-site/R0.14.0/neon/</babel.update.repo.url>
+
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>mars</id>
+			<url>${mars.repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>orbit</id>
+			<url>${orbit.repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>mars-update</id>
+			<url>${mars.update.repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>p2-maven-plugin-local</id>
+			<url>${p2.maven.plugin.local.repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+		<repository>
+			<id>babel-update</id>
+			<url>${babel.update.repo.url}</url>
+			<layout>p2</layout>
+		</repository>
+	</repositories>
+
+
+	<licenses>
+		<license>
+			<name>GNU LESSER GENERAL PUBLIC LICENSE, Version 3</name>
+			<url>http://www.gnu.org/licenses/lgpl.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<compilerArgument>-proc:none</compilerArgument>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<compilerArgs>
+						<arg>-warn:-raw,unchecked</arg>
+					</compilerArgs>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<resolver>p2</resolver>
+					<environments>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>linux</os>
+							<ws>gtk</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86</arch>
+						</environment>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+						<environment>
+							<os>macosx</os>
+							<ws>cocoa</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>${findbugs.maven.plugin.version}</version>
+				<configuration>
+					<!-- Enables analysis which takes more memory but finds more bugs. If 
+						you run out of memory, changes the value of the effort element to 'low'. -->
+					<effort>Max</effort>
+					<!-- Reports all bugs (other values are medium and max) -->
+					<threshold>Low</threshold>
+					<xmlOutput>true</xmlOutput>
+					<findbugsXmlOutput>true</findbugsXmlOutput>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>findbugs</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>findbugs-maven-plugin</artifactId>
+						<version>${findbugs.maven.plugin.version}</version>
+						<executions>
+							<execution>
+								<phase>compile</phase>
+								<goals>
+									<goal>check</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<failOnError>false</failOnError>
+							<excludeFilterFile>${main.basedir}/findbugs/findbugs-exclude.xml</excludeFilterFile>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>checkstyle</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-checkstyle-plugin</artifactId>
+						<version>${checkstyle.maven.plugin.version}</version>
+						<executions>
+							<execution>
+								<phase>validate</phase>
+								<goals>
+									<goal>checkstyle</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<configLocation>${main.basedir}/checkstyle/checkstyle.xml</configLocation>
+							<!-- <suppressionsLocation>${main.basedir}/checkstyle/suppressions.xml</suppressionsLocation> -->
+							<!-- <headerLocation>${main.basedir}/checkstyle/ClassHeader.txt</headerLocation> -->
+							<enableRSS>false</enableRSS>
+							<linkXRef>true</linkXRef>
+							<consoleOutput>true</consoleOutput>
+							<failsOnError>true</failsOnError>
+							<failOnViolation>true</failOnViolation>
+							<includeTestSourceDirectory>false</includeTestSourceDirectory>
+							<enableRulesSummary>true</enableRulesSummary>
+							<propertyExpansion>main.basedir=${main.basedir}</propertyExpansion>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<modules>
+		<module>lider-ahenk-installer-rcp</module>
+		<module>lider-ahenk-installer-product</module>
+		<module>ahenk-installer</module>
+		<module>lider-installer</module>
+		<module>ad-migration</module>
+	</modules>
+	
+	<developers>
+		<developer>
+			<id>canerfyz</id>
+			<name>caner feyzullahoglu</name>
+			<email>caner.feyzullahoglu@agem.com.tr</email>
+		</developer>
+		<developer>
+			<id>emrekgn</id>
+			<name>emre kagan akkaya</name>
+			<email>emre.akkaya@agem.com.tr</email>
+		</developer>
+		<developer>
+			<id>vsahin</id>
+			<name>volkan sahin</name>
+			<email>volkan.sahin@agem.com.tr</email>
+		</developer>
+		<developer>
+			<id>ibasaran</id>
+			<name>ismail basaran</name>
+			<email>basaran.ismaill@gmail.com</email>
+		</developer>
+		<developer>
+			<id>mdogan</id>
+			<name>mine dogan</name>
+			<email>mine.dogan@agem.com.tr</email>
+		</developer>
+		<developer>
+			<id>cemrealpsoy</id>
+			<name>cemre alpsoy</name>
+			<email>cemre.alpsoy@agem.com.tr</email>
+		</developer>
+	</developers>
+
+</project>

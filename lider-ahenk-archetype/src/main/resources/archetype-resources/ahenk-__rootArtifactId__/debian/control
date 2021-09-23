@@ -1,0 +1,16 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+Source: ${rootArtifactId}
+Section: unknown
+Priority: optional
+Maintainer: TUBITAK ULAKBIM
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.liderahenk.org.tr
+
+Package: ahenk-${rootArtifactId}
+Version: ${version}
+Architecture: any
+Depends: python3 (>= 3)
+Description: Lider Ahenk ${artifactId} plugin

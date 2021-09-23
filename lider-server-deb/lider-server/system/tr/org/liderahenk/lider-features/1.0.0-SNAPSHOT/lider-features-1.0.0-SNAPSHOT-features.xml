@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="lider-features-1.0.0-SNAPSHOT">
+    <feature name="lider" description="Lider Ahenk Karaf Features" version="1.0.0.SNAPSHOT">
+        <details>Lider Ahenk Client Management System</details>
+        <feature prerequisite="false" dependency="false">lider-dependent-bundles</feature>
+        <feature prerequisite="false" dependency="false">lider-core-bundles</feature>
+        <feature prerequisite="false" dependency="false">lider-plugin-bundles</feature>
+    </feature>
+    <feature name="lider-core-bundles" description="Lider Ahenk Karaf Features" version="1.0.0.SNAPSHOT">
+        <details>LiderAhenk client management system test feature for
+			deploying without dependencies (for auto dependency resolve)
+		</details>
+        <configfile finalname="/etc/tr.org.liderahenk.cfg">mvn:tr.org.liderahenk/lider-config/1.0.0-SNAPSHOT/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.datasource.cfg">mvn:tr.org.liderahenk/lider-datasource-mariadb/1.0.0-SNAPSHOT/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.dbtype.cfg">mvn:tr.org.liderahenk/lider-persistence-mariadb/1.0.0-SNAPSHOT/cfg</configfile>
+        <bundle start-level="80">mvn:tr.org.liderahenk/lider-core/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="80">mvn:tr.org.liderahenk/lider-localization/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="81">mvn:tr.org.liderahenk/lider-config/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="82">mvn:tr.org.liderahenk/lider-datasource-mariadb/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="83">mvn:tr.org.liderahenk/lider-persistence-mariadb/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-web/1.0.0-SNAPSHOT/war</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-cache-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-ldap-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-log-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-authorization-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-messaging-xmpp/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-rest-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-router-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-service-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-taskmanager-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-pluginmanager-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="84">mvn:tr.org.liderahenk/lider-policymanager-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="85">mvn:tr.org.liderahenk/lider-mail-notification/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="86">mvn:tr.org.liderahenk/lider-report-impl/1.0.0-SNAPSHOT</bundle>
+        <bundle start-level="86">mvn:tr.org.liderahenk/lider-deployer/1.0.0-SNAPSHOT</bundle>
+    </feature>
+    <feature name="lider-plugin-bundles" description="Lider Ahenk Karaf Features" version="1.0.0.SNAPSHOT">
+        <configfile finalname="/etc/tr.org.liderahenk.remote.access.cfg" override="true">mvn:tr.org.liderahenk/lider-remote-access/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.packagemanager.cfg" override="true">mvn:tr.org.liderahenk/lider-package-manager/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.resourceusage.cfg" override="true">mvn:tr.org.liderahenk/lider-resource-usage/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.disk.quota.cfg" override="true">mvn:tr.org.liderahenk/lider-disk-quota/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.conky.cfg" override="true">mvn:tr.org.liderahenk/lider-conky/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.browser.cfg" override="true">mvn:tr.org.liderahenk/lider-browser/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.backup.cfg" override="true">mvn:tr.org.liderahenk/lider-backup/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.loginmanager.cfg" override="true">mvn:tr.org.liderahenk/lider-login-manager/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.network.inventory.cfg" override="true">mvn:tr.org.liderahenk/lider-network-inventory/1.0.0/cfg
+		</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.rsyslog.cfg" override="true">mvn:tr.org.liderahenk/lider-rsyslog/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.screensaver.cfg" override="true">mvn:tr.org.liderahenk/lider-screensaver/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.screenshot.cfg" override="true">mvn:tr.org.liderahenk/lider-screenshot/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.script.cfg" override="true">mvn:tr.org.liderahenk/lider-script/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.usb.cfg" override="true">mvn:tr.org.liderahenk/lider-usb/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.user.privilege.cfg" override="true">mvn:tr.org.liderahenk/lider-user-privilege/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.wol.cfg" override="true">mvn:tr.org.liderahenk/lider-wol/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.antivirus.cfg" override="true">mvn:tr.org.liderahenk/lider-antivirus/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.service.cfg" override="true">mvn:tr.org.liderahenk/lider-service/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.localuser.cfg" override="true">mvn:tr.org.liderahenk/lider-local-user/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.firewall.cfg" override="true">mvn:tr.org.liderahenk/lider-firewall/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.networkmanager.cfg" override="true">mvn:tr.org.liderahenk/lider-network-manager/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.password.cfg" override="true">mvn:tr.org.liderahenk/lider-password/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.sudoers.cfg" override="true">mvn:tr.org.liderahenk/lider-sudoers/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.disklimit.cfg" override="true">mvn:tr.org.liderahenk/lider-disk-limit/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.manageroot.cfg" override="true">mvn:tr.org.liderahenk/lider-manage-root/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.restore.cfg" override="true">mvn:tr.org.liderahenk/lider-restore/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.ldaplogin.cfg" override="true">mvn:tr.org.liderahenk/lider-ldap-login/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.ldap.cfg" override="true">mvn:tr.org.liderahenk/lider-ldap/1.0.0/cfg</configfile>
+        <configfile finalname="/etc/tr.org.liderahenk.notify.cfg" override="true">mvn:tr.org.liderahenk/lider-notify/1.0.0/cfg</configfile>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-remote-access/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-package-manager/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-package-manager-db/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-resource-usage/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-disk-quota/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-conky/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-browser/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-backup/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-backup-db/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-login-manager/1.0.0
+		</bundle>
+        <bundle start-level="90">wrap:mvn:com.jcraft/jsch/0.1.53</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-network-inventory/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-network-inventory-db/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-rsyslog/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-screensaver/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-screenshot/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-script/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-script-db/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-usb/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-user-privilege/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-wol/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-antivirus/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-service/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-service-db/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-local-user/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-firewall/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-network-manager/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-password/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-sudoers/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-disk-limit/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-disk-limit-db/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-manage-root/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-manage-root-db/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-restore/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-restore-db/1.0.0
+		</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-ldap-login/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-ldap-login-db/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-ldap/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-ldap-db/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-notify/1.0.0</bundle>
+        <bundle start-level="90">mvn:tr.org.liderahenk/lider-notify-db/1.0.0</bundle>
+    </feature>
+    <feature name="lider-dependent-bundles" description="Lider Ahenk Karaf Features" version="1.0.0.SNAPSHOT">
+        <feature prerequisite="true" dependency="false">wrap</feature>
+        <feature prerequisite="false" dependency="false">lider-deps-persistence</feature>
+        <feature prerequisite="false" dependency="false">war</feature>
+        <feature prerequisite="false" dependency="false">webconsole</feature>
+        <feature prerequisite="false" dependency="false">spring-web</feature>
+        <feature prerequisite="false" dependency="false">spring</feature>
+        <feature prerequisite="false" dependency="false">spring-dm</feature>
+        <feature prerequisite="false" dependency="false">spring-dm-web</feature>
+        <feature prerequisite="false" dependency="false">config</feature>
+        <feature prerequisite="false" dependency="false">wrapper</feature>
+        <feature prerequisite="false" dependency="false">eventadmin</feature>
+        <feature prerequisite="false" dependency="false">lider-deps-ldap</feature>
+        <feature prerequisite="false" dependency="false">obr</feature>
+        <bundle start-level="50">mvn:org.codehaus.jackson/jackson-core-asl/1.9.13
+		</bundle>
+        <bundle start-level="50">mvn:org.codehaus.jackson/jackson-mapper-asl/1.9.13
+		</bundle>
+        <bundle start-level="50">mvn:commons-lang/commons-lang/2.6</bundle>
+        <bundle start-level="50">mvn:commons-collections/commons-collections/3.2.1
+		</bundle>
+        <bundle start-level="50">mvn:commons-pool/commons-pool/1.6</bundle>
+        <bundle start-level="50">mvn:org.apache.mina/mina-core/2.0.7
+		</bundle>
+        <bundle start-level="50">mvn:org.mariadb.jdbc/mariadb-java-client/1.4.5
+		</bundle>
+        <bundle start-level="50">wrap:mvn:org.postgresql/postgresql/42.2.2
+        </bundle>
+        <bundle start-level="50">mvn:commons-beanutils/commons-beanutils/1.8.3
+		</bundle>
+        <bundle start-level="50">wrap:mvn:commons-logging/commons-logging/1.1.1
+		</bundle>
+        <bundle start-level="50">wrap:mvn:c3p0/c3p0/0.9.1.1</bundle>
+        <bundle start-level="50">mvn:commons-dbcp/commons-dbcp/1.4</bundle>
+        <bundle start-level="50">mvn:net.sf.ehcache/ehcache/2.8.0</bundle>
+        <bundle start-level="50">wrap:mvn:antlr/antlr/2.7.7</bundle>
+        <bundle start-level="50">mvn:commons-codec/commons-codec/1.10
+		</bundle>
+        <bundle start-level="50">mvn:org.igniterealtime.smack/smack-core/4.1.5
+		</bundle>
+        <bundle start-level="50">mvn:org.jxmpp/jxmpp-core/0.4.2</bundle>
+        <bundle start-level="50">mvn:org.jxmpp/jxmpp-util-cache/0.4.2
+		</bundle>
+        <bundle start-level="50">wrap:mvn:xpp3/xpp3/1.1.4c</bundle>
+        <bundle start-level="50">mvn:org.igniterealtime.smack/smack-extensions/4.1.5
+		</bundle>
+        <bundle start-level="50">mvn:org.igniterealtime.smack/smack-im/4.1.5
+		</bundle>
+        <bundle start-level="50">mvn:org.igniterealtime.smack/smack-tcp/4.1.5
+		</bundle>
+        <bundle start-level="50">mvn:org.igniterealtime.smack/smack-sasl-javax/4.1.5
+		</bundle>
+        <bundle start-level="50">mvn:org.igniterealtime.smack/smack-java7/4.1.5
+		</bundle>
+        <bundle start-level="50">mvn:org.igniterealtime.smack/smack-resolver-javax/4.1.5
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.shiro/shiro-core/1.2.4
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.shiro/shiro-web/1.2.4
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.shiro/shiro-spring/1.2.4
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.shiro/shiro-ehcache/1.2.4
+		</bundle>
+        <bundle start-level="50">mvn:commons-io/commons-io/2.4</bundle>
+        <bundle start-level="50">mvn:org.apache.commons/commons-compress/1.7
+		</bundle>
+        <bundle start-level="50">mvn:org.tukaani/xz/1.4</bundle>
+        <bundle start-level="50">mvn:com.hazelcast/hazelcast-all/3.1.7
+		</bundle>
+        <bundle start-level="50">mvn:log4j/log4j/1.2.17</bundle>
+        <bundle start-level="50">mvn:org.slf4j/slf4j-log4j12/1.6.1</bundle>
+        <bundle start-level="50">mvn:org.slf4j/slf4j-api/1.6.1</bundle>
+        <bundle start-level="45">wrap:mvn:javax.mail/javax.mail-api/1.5.5
+		</bundle>
+        <bundle start-level="45">wrap:mvn:com.sun.mail/javax.mail/1.5.5
+		</bundle>
+        <bundle start-level="45">wrap:mvn:com.itextpdf/itextpdf/5.5.9
+		</bundle>
+    </feature>
+    <feature name="lider-deps-ldap" version="1.0.0.SNAPSHOT">
+        <bundle start-level="50">mvn:org.apache.directory.api/api-ldap-client-api/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-ldap-codec-core/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-asn1-api/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-asn1-ber/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-ldap-schema-data/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-i18n/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-ldap-model/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-ldap-extras-aci/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-util/1.0.0-M20
+		</bundle>
+        <bundle start-level="50">mvn:org.apache.directory.api/api-ldap-net-mina/1.0.0-M20
+		</bundle>
+    </feature>
+    <feature name="lider-deps-persistence" version="1.0.0.SNAPSHOT">
+        <feature prerequisite="false" dependency="false">lider-jpa</feature>
+        <feature prerequisite="false" dependency="false">lider-transaction</feature>
+        <feature prerequisite="false" dependency="false">jndi</feature>
+        <feature prerequisite="false" dependency="false">lider-openjpa</feature>
+    </feature>
+    <feature name="lider-openjpa" description="Apache OpenJPA 2.3.x persistence engine support" version="2.3.0">
+        <details>Enable Apache OpenJPA as persistence engine.</details>
+        <feature prerequisite="false" dependency="false">lider-jpa</feature>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-annotation_1.0_spec/1.1.1
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-servlet_2.5_spec/1.2
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-el_1.0_spec/1.0.1
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1
+		</bundle>
+        <bundle dependency="true">mvn:commons-lang/commons-lang/2.6</bundle>
+        <bundle dependency="true">mvn:commons-collections/commons-collections/3.2.1
+		</bundle>
+        <bundle dependency="true">mvn:commons-pool/commons-pool/1.6</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.commons-dbcp/1.4_3
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.ant/1.7.0_6
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.serp/1.14.1_1
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.geronimo.specs/geronimo-jms_1.1_spec/1.1.1
+		</bundle>
+        <bundle dependency="true">mvn:org.apache.xbean/xbean-asm4-shaded/3.16
+		</bundle>
+        <bundle start-level="29">mvn:org.apache.openjpa/openjpa/2.3.0
+		</bundle>
+    </feature>
+    <feature name="lider-transaction" description="OSGi Transaction Manager" version="1.1.0">
+        <details>JTA implementation provided by Apache Aries Transaction 1.1.0
+		</details>
+        <config name="org.apache.aries.transaction" append="false">
+			aries.transaction.recoverable = true
+			aries.transaction.timeout = 600
+			aries.transaction.howl.logFileDir = ${karaf.data}/txlog
+			aries.transaction.howl.maxLogFiles = 2
+			aries.transaction.howl.maxBlocksPerFile = 512
+			aries.transaction.howl.bufferSizeKBytes = 4
+		</config>
+        <bundle start-level="30" dependency="true">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1
+		</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.transaction/org.apache.aries.transaction.manager/1.1.0
+		</bundle>
+        <bundle start-level="31">mvn:org.apache.aries.transaction/org.apache.aries.transaction.blueprint/1.0.1
+		</bundle>
+    </feature>
+    <feature name="lider-jpa" description="OSGi Persistence Container" version="0.0.0.__aries_jpa_version_">
+        <details>JPA implementation provided by Apache Aries JPA
+			${aries.jpa.version}. NB: this feature doesn't provide the JPA
+			engine, you have to install one by yourself (OpenJPA for instance)
+		</details>
+        <bundle start-level="30" dependency="true">mvn:org.apache.geronimo.specs/geronimo-jta_1.1_spec/1.1.1
+		</bundle>
+        <bundle start-level="30" dependency="true">mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1
+		</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jpa/org.apache.aries.jpa.api/1.0.2
+		</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jpa/org.apache.aries.jpa.blueprint.aries/1.0.4
+		</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jpa/org.apache.aries.jpa.container/1.0.2
+		</bundle>
+        <bundle start-level="30">mvn:org.apache.aries.jpa/org.apache.aries.jpa.container.context/1.0.4
+		</bundle>
+    </feature>
+    <feature name="lider-features" description="Lider Ahenk Karaf Features" version="1.0.0.SNAPSHOT">
+        <bundle>mvn:log4j/log4j/1.2.17</bundle>
+        <bundle>mvn:org.slf4j/slf4j-log4j12/1.6.1</bundle>
+        <bundle>mvn:org.slf4j/slf4j-api/1.6.1</bundle>
+        <bundle>mvn:org.apache.aries.blueprint/org.apache.aries.blueprint/1.1.0</bundle>
+        <bundle>mvn:org.osgi/org.osgi.compendium/5.0.0</bundle>
+        <bundle>mvn:org.osgi/org.osgi.core/6.0.0</bundle>
+    </feature>
+</features>

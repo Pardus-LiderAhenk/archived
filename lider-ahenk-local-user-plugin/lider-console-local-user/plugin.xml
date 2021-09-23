@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.LocalUserTask"            
+            name="%command.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+       <handler
+            class="tr.org.liderahenk.localuser.handlers.LocalUserTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.LocalUserTask">
+      </handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+           commandId="tr.org.liderahenk.liderconsole.commands.LocalUserTask"
+           icon="icons/16/users.png"
+           id="tr.org.liderahenk.liderconsole.commands.LocalUserTask"
+           tooltip="%command.task">
+			 <visibleWhen>
+					   <and>
+					       <with
+					             variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+					          <equals
+					                value="true">
+					          </equals>
+					       </with>
+					       <with
+					             variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+					          <equals
+					                value="true">
+					          </equals>
+					       </with>
+					       <with
+					             variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+					          <equals
+					                value="true">
+					          </equals>
+					       </with>
+					    </and>
+					</visibleWhen>               
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="ADD_USER" label="%command.add.user.task" />
+  		<task code="DELETE_USER" label="%command.delete.user.task" />
+  		<task code="EDIT_USER" label="%command.edit.user.task" />
+  		<task code="GET_USERS" label="%command.get.users.task" />
+		<plugin name="local-user" label="%plugin.label" />
+  <task
+        code="GET_GROUPS"
+        label="%command.get.groups.task">
+  </task>
+  	</extension>
+  	
+  	
+  	
+  	
+	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="local-user"
+  		pluginVersion="1.0.0"
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.LocalUserTask" 
+  		description="Sisteme yeni kullanıcı ekleme, kullanıcıyı silme ve varolan kullanıcı üzerinde değişiklikler yapmayı sağlayan eklentidir.&#xA;Yerel kullanıcı işlemleri için tıklayınız.." 
+  		imagePath="users.png"/>
+  	</extension>
+  	
+  
+</plugin>

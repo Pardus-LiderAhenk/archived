@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+	name="${artifactId}"
+	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<fileSets>
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory />
+			<includes>
+				<include>.gitignore</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory />
+			<includes>
+				<include>README.md</include>
+				<include>LICENSE</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true" encoding="UTF-8">
+			<directory>scripts</directory>
+			<includes>
+				<include>**/*.sh</include>
+			</includes>
+		</fileSet>
+	</fileSets>
+
+	<modules>
+		<module id="lider-${rootArtifactId}" dir="lider-__rootArtifactId__"
+			name="lider-${rootArtifactId}">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/main/resources</directory>
+					<includes>
+						<include>**/*.xml</include>
+						<include>**/*.properties</include>
+						<include>**/*.cfg</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/test/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet encoding="UTF-8">
+					<directory>src/test/resources</directory>
+					<includes>
+						<include>**/*.xml</include>
+						<include>**/*.properties</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="lider-${rootArtifactId}-db" dir="lider-__rootArtifactId__-db"
+			name="lider-${rootArtifactId}-db">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/main/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/main/resources</directory>
+					<includes>
+						<include>**/*.xml</include>
+						<include>**/*.properties</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src/test/java</directory>
+					<includes>
+						<include>**/*.java</include>
+					</includes>
+				</fileSet>
+				<fileSet encoding="UTF-8">
+					<directory>src/test/resources</directory>
+					<includes>
+						<include>**/*.xml</include>
+						<include>**/*.properties</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="lider-${rootArtifactId}-feature" dir="lider-__rootArtifactId__-feature"
+			name="lider-${rootArtifactId}-feature">
+			<fileSets>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>src/main/feature</directory>
+					<includes>
+						<include>**/*.xml</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="lider-console-${rootArtifactId}" dir="lider-console-__rootArtifactId__"
+			name="lider-console-${rootArtifactId}">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>src</directory>
+					<includes>
+						<include>**/*.java</include>
+						<include>**/*.properties</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>META-INF</directory>
+					<includes>
+						<include>**/*.MF</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>icons</directory>
+					<includes>
+						<include>**/*.png</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>OSGI-INF</directory>
+					<includes>
+						<include>**/*.properties</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory />
+					<includes>
+						<include>build.properties</include>
+						<include>plugin.xml</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="lider-console-${rootArtifactId}-feature" dir="lider-console-__rootArtifactId__-feature"
+			name="lider-console-${rootArtifactId}-feature">
+			<fileSets>
+				<fileSet filtered="true" packaged="true" encoding="UTF-8">
+					<directory>target</directory>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory />
+					<includes>
+						<include>build.properties</include>
+						<include>feature.xml</include>
+						<include>pom.xml</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+		<module id="ahenk-${rootArtifactId}" dir="ahenk-__rootArtifactId__"
+			name="ahenk-${rootArtifactId}">
+			<fileSets>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory>debian</directory>
+					<includes>
+						<include>*</include>
+					</includes>
+				</fileSet>
+				<fileSet filtered="true" encoding="UTF-8">
+					<directory />
+					<includes>
+						<include>**/*.py</include>
+					</includes>
+				</fileSet>
+			</fileSets>
+		</module>
+	</modules>
+
+	<requiredProperties>
+		<requiredProperty key="groupId">
+			<defaultValue>tr.org.liderahenk</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="artifactId">
+			<defaultValue>sample-plugin</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="package">
+			<defaultValue>tr.org.liderahenk.sample</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="version">
+			<defaultValue>1.0.0</defaultValue>
+		</requiredProperty>
+		<requiredProperty key="pluginClassName">
+			<defaultValue>Sample</defaultValue>
+		</requiredProperty>
+	</requiredProperties>
+
+</archetype-descriptor>

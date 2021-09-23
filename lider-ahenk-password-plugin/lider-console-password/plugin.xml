@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.PasswordTask"            
+            name="%command.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AddPasswordPolicyTask"            
+            name="%command.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.password.handlers.PasswordTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.PasswordTask">  
+      </handler>
+      
+       <handler
+            class="tr.org.liderahenk.password.handlers.AddPasswordPolicyHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AddPasswordPolicyTask">  
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.PasswordTask"
+                  id="tr.org.liderahenk.liderconsole.commands.PasswordTask"
+                  tooltip="%command.task">
+                  <visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.AddPasswordPolicyTask"
+                  id="tr.org.liderahenk.liderconsole.commands.AddPasswordPolicyTask"
+                  tooltip="%command.task">
+                  <visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+   <!-- Add extension point contribution for i18n messages -->
+  	<extension
+         point="tr.org.liderahenk.liderconsole.core.i18n">
+         <task code="CHANGE_LDAP_PASSWORD" label="%command.task" />
+        <plugin name="password" label="%plugin.label" />
+     </extension>
+     
+     	<!-- Add extension point contribution for "task execution" dialogs 
+     
+     <extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="password" 
+  		pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.PasswordTask" selectionType="multi" 
+  		description="LDAP'ta tanımlı kullanıcıların parolalarını değiştirmeyi sağlayan eklentidir.&#xA;Parola değiştirmek için tıklayınız.."
+  		imagePath="password.png"/>
+  	</extension>
+  	
+  	-->
+     
+</plugin>

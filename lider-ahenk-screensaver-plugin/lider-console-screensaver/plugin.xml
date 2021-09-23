@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ScreensaverProfile"            
+            name="%command.profile">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.screensaver.handlers.ScreensaverProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ScreensaverProfile">
+      	</handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ScreensaverProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.ScreensaverProfile"
+                  tooltip="%command.profile"
+                  icon="icons/16/screensaver.png">
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="screensaver" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.ScreensaverProfile" />
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+		<plugin name="screensaver" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

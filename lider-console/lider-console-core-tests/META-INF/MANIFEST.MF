@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Lider Console Core Tests
+Bundle-SymbolicName: tr.org.liderahenk.liderconsole.core.tests
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Agem Bilişim
+Fragment-Host: tr.org.liderahenk.liderconsole.core;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Require-Bundle: org.junit
+Bundle-ClassPath: conf/,
+ .

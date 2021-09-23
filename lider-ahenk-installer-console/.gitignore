@@ -1,0 +1,10 @@
+bin/
+bin/**
+target/
+target/**
+.classpath
+.project
+.settings/
+.settings/**
+workspace/
+workspace/**

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AntivirusProfile"            
+            name="%command.profile">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AntivirusTask"            
+            name="%command.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AntivirusChangeConfigurationTask"            
+            name="%command.change.configuration.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AntivirusVersionTask"            
+            name="%command.version.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AntivirusConfigurationTask"            
+            name="%command.configuration.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.antivirus.handlers.AntivirusProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AntivirusProfile"> 
+      	</handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.antivirus.handlers.AntivirusTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AntivirusTask">
+      </handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.antivirus.handlers.AntivirusChangeConfigurationTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AntivirusChangeConfigurationTask">
+      </handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.antivirus.handlers.AntivirusVersionTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AntivirusVersionTask">
+      </handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.antivirus.handlers.AntivirusConfigurationTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AntivirusConfigurationTask">
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.AntivirusProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.AntivirusProfile"
+                  tooltip="%command.profile"
+                  icon="icons/16/antivirus.png">
+           		</command>
+		</menuContribution>
+		
+		<menuContribution
+			locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+			<menu
+				id="tr.org.liderahenk.liderconsole.menus.Antivirus"
+				label="%plugin.label"
+				icon="icons/16/antivirus.png">
+			</menu>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.Antivirus?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.AntivirusTask"
+                  id="tr.org.liderahenk.liderconsole.commands.AntivirusTask"
+                  tooltip="%command.task"
+                  icon="icons/16/antivirus.png">
+                  	<visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.Antivirus?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.AntivirusVersionTask"
+                  id="tr.org.liderahenk.liderconsole.commands.AntivirusVersionTask"
+                  tooltip="%command.version.task"
+                  icon="icons/16/antivirus.png">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+		
+			<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.Antivirus?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.AntivirusConfigurationTask"
+                  id="tr.org.liderahenk.liderconsole.commands.AntivirusConfigurationTask"
+                  tooltip="%command.configuration.task"
+                  icon="icons/16/antivirus.png">
+				  	<visibleWhen>
+				  		<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+  
+  	<extension
+         point="tr.org.liderahenk.liderconsole.core.i18n">
+         <task code="INSTANT_SCAN" label="%command.task" />
+         <task code="ANTIVIRUS_VERSION" label="%command.version.task" />
+         <task code="ANTIVIRUS_CONFIGURATION" label="%command.configuration.task" />
+         <task code="ANTIVIRUS_CHANGE_CONFIGURATION" label="%command.change.configuration.task" />
+        <plugin name="antivirus" label="%plugin.label" />
+     </extension>
+     
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="antivirus" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.AntivirusProfile" />
+  	</extension>
+  	
+  		<!-- Add extension point contribution for "task execution" dialogs -->
+  	
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="antivirus" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.AntivirusTask" selectionType="multi" description="Ahenk makinesinde/lerinde anlık olarak virüs taraması yapmasını sağlamaktadır.&#xA;Anlık tarama yapmak için tıklayınız.." imagePath="antivirus.png" />
+  	</extension>
+  	
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.configuration.task" pluginName="antivirus" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.AntivirusConfigurationTask" description="Clamav antivirüs programının konfigürasyonunu düzenlemeyi sağlayan eklentidir.&#xA;Konfigürasyonu düzenlemek için tıklayınız.." imagePath="antivirus.png"/>
+  	</extension>
+  	
+  		<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.version.task" pluginName="antivirus" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.AntivirusVersionTask" description="Ahenk makinesi üzerinde çalışmakta olan 'clamav' antivirüs programının mevcut sürümü hakkında bilgi vermektedir.&#xA;Antivirüs sürümü hakkında bilgi almak için tıklayınız.." imagePath="antivirus.png"/>
+  	</extension>
+  	
+</plugin>

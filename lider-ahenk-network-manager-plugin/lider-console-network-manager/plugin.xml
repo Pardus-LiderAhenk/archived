@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.NetworkManagerTask"            
+            name="%command.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+       <handler
+            class="tr.org.liderahenk.networkmanager.handlers.NetworkManagerTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.NetworkManagerTask">
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+           commandId="tr.org.liderahenk.liderconsole.commands.NetworkManagerTask"
+           icon="icons/16/network.png"
+           id="tr.org.liderahenk.liderconsole.commands.NetworkManagerTask"
+           tooltip="%command.task">
+		        <visibleWhen>
+		           <and>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		                 <equals
+		                       value="true">
+		                 </equals>
+		              </with>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+		                 <equals
+		                       value="true">
+		                 </equals>
+		              </with>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+		                 <equals
+		                       value="true">
+		                 </equals>
+		              </with>
+		           </and>
+		        </visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+  <extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  	<task code="add_dns" label="%command.add.dns.task" />
+  	<task code="add_domain" label="%command.add.domain.task" />
+  	<task code="add_host" label="%command.add.host.task" />
+  	<task code="add_network" label="%command.add.network.task" />
+  	<task code="change_hostname" label="%command.change.hostname.task" />
+  	<task code="delete_dns" label="%command.delete.dns.task" />
+  	<task code="delete_domain" label="%command.delete.domain.task" />
+  	<task code="delete_host" label="%command.delete.host.task" />
+  	<task code="delete_network" label="%command.delete.network.task" />
+  	<task code="get_network_information" label="%command.get.network.information.task" />
+  	<task code="allow_port" label="%command.allow.port" />
+  	<task code="block_port" label="%command.block.port" />
+	<plugin name="network-manager" label="%plugin.label" />
+  </extension>  
+  
+  
+   	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="network-manager" 
+  		pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.NetworkManagerTask" 
+  		description="Makine üzerindeki ağ ayarlarını düzenlemeyi sağlayan eklentidir.&#xA;Ağ ayarlarını düzenlemek için tıklayınız.." 
+  		imagePath="network.png"/>
+  	</extension>
+  	
+  
+  
+</plugin>

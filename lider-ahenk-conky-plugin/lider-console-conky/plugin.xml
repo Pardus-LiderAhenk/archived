@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ConkyProfile"            
+            name="%command.profile">
+      </command>
+      
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ConkyTask"            
+            name="%command.task">
+      </command>
+      
+       <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.SendMessageTask"            
+            name="%command.task">
+      </command>
+      
+      
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.conky.handlers.ConkyProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ConkyProfile">
+      	</handler>
+      	
+      	<handler
+            class="tr.org.liderahenk.conky.handlers.SendMessageTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.SendMessageTask">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      </handler>
+      
+      <handler
+            class="tr.org.liderahenk.conky.handlers.ConkyTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ConkyTask">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      </handler>
+      
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ConkyProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.ConkyProfile"
+                  tooltip="%command.profile"
+                  icon="icons/16/conky.png">
+           		</command>
+		</menuContribution>
+		
+		
+				
+		   	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+           commandId="tr.org.liderahenk.liderconsole.commands.ConkyTask"
+           icon="icons/16/conky.png"
+           id="tr.org.liderahenk.liderconsole.commands.ConkyTask"
+           tooltip="%command.task">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+           		
+           		
+           		
+           		<command
+           commandId="tr.org.liderahenk.liderconsole.commands.SendMessageTask"
+           icon="icons/16/conky.png"
+           id="tr.org.liderahenk.liderconsole.commands.SendMessageTask"
+           tooltip="%commandSendMessage.task">
+       		 <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+           		
+           		
+           		
+           		
+		</menuContribution>
+		
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="conky" pluginVersion="1.0.0" 
+  		profileCommandId="tr.org.liderahenk.liderconsole.commands.ConkyProfile" 
+  		profileDialogClass="tr.org.liderahenk.conky.dialogs.ConkyProfileDialog" />
+  	</extension>
+  	
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="conky" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.ConkyTask" selectionType="multi" description="Conky masaüstü uygulaması ile metin tabanlı bilgilerin kullanıcının masaüstünde görülmesini sağlar.&#xA;Mesaj iletmek için tıklayınız.." 
+  		imagePath="conky.png"/>
+  		
+  		<taskItem label="%commandSendMessage.task" pluginName="conky" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.SendMessageTask" selectionType="multi" description="XMessage masaüstü uygulaması ile metin tabanlı bilgilerin kullanıcının masaüstünde görülmesini sağlar.&#xA;Mesaj iletmek için tıklayınız.." 
+  		imagePath="conky.png"/>
+  	</extension>
+  	
+
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="EXECUTE_CONKY" label="%command.task" />
+		<plugin name="conky" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

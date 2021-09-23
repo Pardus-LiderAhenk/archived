@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+	<extension
+         point="org.eclipse.ui.commands">
+		<category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+		</category>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ScriptProfile"            
+            name="%command.profile">
+      </command>       
+		<command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ScriptDefinition"            
+            name="%command.script.definition">
+		</command>
+		<command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.ExecuteScriptTask"            
+            name="%command.execute.script.task">
+		</command>
+	</extension>
+   
+	<extension
+       point="org.eclipse.ui.handlers">
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.script.handlers.ScriptProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ScriptProfile">
+      	</handler>
+		<!-- Script definition handler -->
+       	<handler
+            class="tr.org.liderahenk.script.handlers.ScriptDefinitionHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ScriptDefinition">
+      	</handler>
+      	
+      	<!-- Task handler -->
+		<handler
+            class="tr.org.liderahenk.script.handlers.ExecuteScriptTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.ExecuteScriptTask">
+		</handler>
+      
+	</extension>
+  
+	<extension
+         point="org.eclipse.ui.menus">
+         
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ScriptProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.ScriptProfile"
+                  tooltip="%command.profile"
+                  icon="icons/16/script-definition.png">
+           		</command>
+		</menuContribution>
+		
+		<!-- Add menu command for script definition editor -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ScriptDefinition"
+                  id="tr.org.liderahenk.liderconsole.commands.ScriptDefinition"
+                  tooltip="%command.script.definition"
+                  icon="icons/16/script-definition.png">
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.ExecuteScriptTask"
+                  id="tr.org.liderahenk.liderconsole.commands.ExecuteScriptTask"
+                  tooltip="%command.execute.script.task"
+                  icon="icons/16/execute-script.png">
+                  	<visibleWhen>
+                  	<and>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+				             	<equals
+					                   value="false">
+					            </equals>
+				          	</with>
+			          	</and>
+					</visibleWhen>
+           		</command>
+		</menuContribution>
+	</extension>
+
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="script" pluginVersion="1.0.0" 
+  		profileCommandId="tr.org.liderahenk.liderconsole.commands.ScriptProfile" />
+  	</extension>
+  	
+	<extension
+		point="org.eclipse.ui.editors">
+		<editor
+	       class="tr.org.liderahenk.script.editors.ScriptDefinitionEditor"
+	       default="true"
+	       icon="icons/16/execute-script.png"
+	       id="tr.org.liderahenk.script.editors.ScriptDefinitionEditor"
+	       name="%editor.script.definition">
+		</editor>
+	</extension>
+	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="execute_script" label="%command.execute.script.task" />
+		<plugin name="script" label="%plugin.label" />
+  	</extension>
+  
+  	<!-- Add extension point contribution for "task execution" dialogs -->
+  	 <extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.execute.script.task" pluginName="script" 
+  		pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.ExecuteScriptTask" 
+  		selectionType="multi" description="Betik eklentisi, özel olarak yazılmış betik dosyalarının Ahenk makine/lerde çalıştırılmasını sağlayan bir görev eklentisidir.&#xA;Betik çalıştırmak için tıklayınız.." 
+  		imagePath="script-run.png"/>
+  	</extension>
+  
+</plugin>

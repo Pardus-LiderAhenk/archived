@@ -1,0 +1,14 @@
+Source: ahenk-conky
+Section: unknown
+Priority: optional
+Maintainer: TUBITAK ULAKBIM
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.liderahenk.org.tr
+
+Package: ahenk-conky
+Version: 1.0.0
+Architecture: any
+Depends: python3 (>= 3), conky, conky-all, python3-easygui
+Description: Lider Ahenk Conky plugin
+

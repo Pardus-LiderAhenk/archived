@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+     
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.RestoreTask"            
+            name="%restore.task">
+      </command>
+     
+    
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.restore.handlers.RestoreTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.RestoreTask">
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+   
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.RestoreTask"
+                  id="tr.org.liderahenk.liderconsole.commands.RestoreTask"
+                  tooltip="%command.task"
+                  icon="icons/16/backup.png">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+		
+  </extension>
+  
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%restore.task" pluginName="restore" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.RestoreTask" selectionType="multi" description="Daha önceden yedeklenen dizinlerin geri yüklenmesi için tıklayınız..." imagePath="backup.png"/> 
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="backup_task" label="%command.task" />
+  		<plugin name="restore" label="%plugin.label" />
+  	</extension>
+  	
+  	
+	
+</plugin>

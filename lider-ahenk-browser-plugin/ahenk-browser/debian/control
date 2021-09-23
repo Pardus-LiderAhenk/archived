@@ -1,0 +1,14 @@
+Source: ahenk-browser
+Section: unknown
+Priority: optional
+Maintainer: TUBITAK ULAKBIM
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.6
+Homepage: http://www.liderahenk.org.tr
+
+Package: ahenk-browser
+Version: 1.0.0
+Architecture: any
+Depends: python3 (>= 3)
+Description: Lider Ahenk browser plugin
+

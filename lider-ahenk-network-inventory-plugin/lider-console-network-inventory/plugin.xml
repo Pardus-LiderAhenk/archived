@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%category.name">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.NetworkInventory"            
+            name="%command.name">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.NetworkInventoryTask"            
+            name="%command.task">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.NetworkInventoryMultipleFileTransfer"            
+            name="%command.multiple.file.transfer.task">
+      </command>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+       <handler
+            class="tr.org.liderahenk.network.inventory.handlers.NetworkInventoryHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.NetworkInventoryTask">
+      </handler>
+      <handler
+            class="tr.org.liderahenk.network.inventory.handlers.NetworkInventoryHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.NetworkInventory">
+      </handler>
+      <handler
+            class="tr.org.liderahenk.network.inventory.handlers.NetworkInventoryMultipleFileTransferHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.NetworkInventoryMultipleFileTransfer">
+      </handler>
+   </extension>
+   
+   <extension 
+   			point="org.eclipse.ui.menus">
+   		 <!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 			<command
+	           commandId="tr.org.liderahenk.liderconsole.commands.NetworkInventoryTask"
+	           icon="icons/16/network.png"
+	           id="tr.org.liderahenk.liderconsole.commands.NetworkInventoryTask"
+	           tooltip="%command.task">
+		        <visibleWhen>
+		           <and>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		                 <equals
+		                       value="true">
+		                 </equals>
+		              </with>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+		                 <equals
+		                       value="true">
+		                 </equals>
+		              </with>
+		              <with
+		                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+		                 <equals
+		                       value="true">
+		                 </equals>
+		              </with>
+		           </and>
+		        </visibleWhen>
+			</command>
+ 			<command commandId="tr.org.liderahenk.liderconsole.commands.NetworkInventoryMultipleFileTransfer"
+ 				icon="icons/16/network.png"
+           		id="tr.org.liderahenk.liderconsole.commands.NetworkInventoryMultipleFileTransfer"
+           		tooltip="%command.multiple.file.transfer.task">
+	        	<visibleWhen>
+	        		<and>
+	              		<with variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+	                 		<equals
+	                       		value="true">
+	                 		</equals>
+	              		</with>
+	              		<or>
+	              			<with variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	                 			<equals
+	                       			value="true">
+	                 			</equals>
+	              			</with>
+	              			<with variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isMultipleEntriesSelected">
+	                 			<equals
+	                       			value="true">
+	                 			</equals>
+	              			</with>
+	              			<with variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapOUSelected">
+	                 			<equals
+	                       			value="true">
+	                 			</equals>
+	              			</with>
+	              		</or>
+	           		</and>
+	        	</visibleWhen>
+       		</command>
+		</menuContribution>
+		
+         <!-- <menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.LiderMain?after=additions">
+            <command
+                  commandId="tr.org.liderahenk.liderconsole.commands.NetworkInventory"
+                  id="tr.org.liderahenk.liderconsole.command.NetworkInventory"
+                  icon="icons/16/network.png"
+                  tooltip="%command.name">
+            </command>
+      </menuContribution> -->
+  </extension>
+  
+	<extension
+		point="org.eclipse.ui.editors">
+			<editor
+				class="tr.org.liderahenk.network.inventory.editors.NetworkInventoryEditor"
+				icon="icons/16/network.png"
+				id="tr.org.liderahenk.network.inventory.editors.NetworkInventoryEditor"
+				name="%command.name">
+			</editor>  
+	</extension>
+	   
+	   
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="MULTIPLE-FILE-TRANSFER" label="%command.multiple.file.transfer.task" />
+  		<task code="SCANNETWORK" label="%command.task" />
+		<plugin name="network-inventory" label="%plugin.label" />
+  	</extension>
+	 
+
+	 	<!-- Add extension point contribution for "task execution" dialogs -->
+	<!-- <extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="network-inventory" 
+  		pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.NetworkInventoryTask" 
+  		description="Ağdaki cihazları belirtilen ip aralığı ve port aralığına göre listelemek, bulunan cihazlara ahenk yüklemek ve dosya paylaşımı yapmak için geliştirilmiştir.&#xA;Ağ taraması yapmak için tıklayınız.." 
+  		imagePath="network.png"/>
+  	</extension> -->
+  	
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.multiple.file.transfer.task" pluginName="network-inventory" 
+  		pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.NetworkInventoryMultipleFileTransfer" selectionType="multi" 
+  		description="Seçilen ahenk/ahenklere dosya paylaşımı yapmayı sağlayan eklentidir.&#xA;Dosya paylaşımı yapmak için tıklayınız.."
+  		imagePath="share.png"/>
+  	</extension>
+  	
+
+	 
+	   
+</plugin>

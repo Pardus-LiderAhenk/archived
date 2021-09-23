@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmi:id="_7JCg0L6EEeW1FPx53XIKsg">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_9lMaML6EEeW1FPx53XIKsg" featurename="commands" parentElementId="org.eclipse.e4.ide.application">
+    <elements xsi:type="commands:Command" xmi:id="_J3YkkL6FEeW1FPx53XIKsg" elementId="tr.org.liderahenk.installer.commands.AhenkInstallationHandler" commandName="Show Ahenk Installation Wizard"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Qg8SgL6FEeW1FPx53XIKsg" featurename="handlers" parentElementId="org.eclipse.e4.ide.application">
+    <elements xsi:type="commands:Handler" xmi:id="_U845YL6FEeW1FPx53XIKsg" elementId="tr.org.liderahenk.installer.ahenk.handler.AhenkInstallationHandler" contributionURI="bundleclass://tr.org.liderahenk.installer.ahenk/tr.org.liderahenk.installer.ahenk.handler.AhenkInstallationHandler" command="_J3YkkL6FEeW1FPx53XIKsg"/>
+  </fragments>
+</fragment:ModelFragments>

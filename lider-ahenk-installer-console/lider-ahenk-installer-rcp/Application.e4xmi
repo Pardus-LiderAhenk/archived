@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_Y5UhcGabEeWqicFihqUSNQ" elementId="org.eclipse.e4.ide.application" bindingContexts="_Y5UheWabEeWqicFihqUSNQ">
+  <children xsi:type="basic:Window" xmi:id="_jrusgHsSEeWYT4_CknNf9A" elementId="lider-ahenk-installer.window.main" width="500" height="400">
+    <children xsi:type="basic:InputPart" xmi:id="_oUIbAHsSEeWYT4_CknNf9A" elementId="lider-ahenk-installer.inputpart.maintable" contributionURI="bundleclass://tr.org.liderahenk.installer.rcp/tr.org.pardus.mys.liderahenksetup.main.ApplicationWindowManager"/>
+    <mainMenu xmi:id="_mV0UMHsSEeWYT4_CknNf9A" elementId="lider-ahenk-installer.menu.0">
+      <children xsi:type="menu:Menu" xmi:id="_uCZlYHsSEeWYT4_CknNf9A" elementId="lider-ahenk-installer.menu.file" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_yB4SsHsSEeWYT4_CknNf9A" elementId="lider-ahenk-installer.handledmenuitem.quit" label="Quit" command="_Y5UhfGabEeWqicFihqUSNQ"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_vvR98HsSEeWYT4_CknNf9A" elementId="lider-ahenk-installer.menu.help" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_0pJ28HsSEeWYT4_CknNf9A" elementId="lider-ahenk-installer.handledmenuitem.about" label="About" command="_Y5UhhmabEeWqicFihqUSNQ"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_dvzVQJtXEeaKC74mLO4cPw" elementId="tr.org.liderahenk.installer.rcp.menu.tools" label="Araçlar"/>
+    </mainMenu>
+  </children>
+  <handlers xmi:id="_Y5UhfWabEeWqicFihqUSNQ" elementId="lider-ahenk-installer.handler.quitCommand" contributionURI="bundleclass://tr.org.liderahenk.installer.rcp/tr.org.pardus.mys.liderahenksetup.handlers.QuitHandler" command="_Y5UhfGabEeWqicFihqUSNQ"/>
+  <handlers xmi:id="_Y5Uhh2abEeWqicFihqUSNQ" elementId="lider-ahenk-installer.handler.aboutCommand" contributionURI="bundleclass://tr.org.liderahenk.installer.rcp/tr.org.pardus.mys.liderahenksetup.handlers.AboutHandler" command="_Y5UhhmabEeWqicFihqUSNQ"/>
+  <bindingTables xmi:id="_Y5UhfmabEeWqicFihqUSNQ" bindingContext="_Y5UheWabEeWqicFihqUSNQ">
+    <bindings xmi:id="_Y5Uhf2abEeWqicFihqUSNQ" keySequence="M1+Q" command="_Y5UhfGabEeWqicFihqUSNQ"/>
+    <bindings xmi:id="_Y5UhiGabEeWqicFihqUSNQ" keySequence="M1+A" command="_Y5UhhmabEeWqicFihqUSNQ"/>
+  </bindingTables>
+  <rootContext xmi:id="_Y5UheWabEeWqicFihqUSNQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
+    <children xmi:id="_Y5UhemabEeWqicFihqUSNQ" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
+    <children xmi:id="_Y5Uhe2abEeWqicFihqUSNQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
+  </rootContext>
+  <commands xmi:id="_Y5UhfGabEeWqicFihqUSNQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
+  <commands xmi:id="_Y5UhhmabEeWqicFihqUSNQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <addons xmi:id="_Y5UhcmabEeWqicFihqUSNQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
+  <addons xmi:id="_Y5Uhc2abEeWqicFihqUSNQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
+  <addons xmi:id="_Y5UhdGabEeWqicFihqUSNQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
+  <addons xmi:id="_Y5UhdWabEeWqicFihqUSNQ" elementId="org.eclipse.e4.ui.workbench.commands.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.CommandProcessingAddon"/>
+  <addons xmi:id="_Y5UhdmabEeWqicFihqUSNQ" elementId="org.eclipse.e4.ui.workbench.handler.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.HandlerProcessingAddon"/>
+  <addons xmi:id="_Y5Uhd2abEeWqicFihqUSNQ" elementId="org.eclipse.e4.ui.workbench.contexts.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench/org.eclipse.e4.ui.internal.workbench.addons.ContextProcessingAddon"/>
+  <addons xmi:id="_Y5UheGabEeWqicFihqUSNQ" elementId="org.eclipse.e4.ui.workbench.bindings.model" contributionURI="bundleclass://org.eclipse.e4.ui.workbench.swt/org.eclipse.e4.ui.workbench.swt.util.BindingProcessingAddon"/>
+</application:Application>

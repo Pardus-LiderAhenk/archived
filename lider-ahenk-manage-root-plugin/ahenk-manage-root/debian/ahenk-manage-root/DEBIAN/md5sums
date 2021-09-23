@@ -1,0 +1,9 @@
+3c3260b124c9bfa19eb22af1b9604274  usr/share/ahenk/plugins/manage-root/init.py
+5600c082c5fd4005cbfe34befd4412e3  usr/share/ahenk/plugins/manage-root/login.py
+676a180eaf84babe8131274f7680e3c8  usr/share/ahenk/plugins/manage-root/logout.py
+45619ab4a5e4807a981030488d80f6fc  usr/share/ahenk/plugins/manage-root/main.py
+2613e05c313fec8cef382cd53513fd9a  usr/share/ahenk/plugins/manage-root/policy.py
+53ba59fa72fc042c8a599541f1f3f054  usr/share/ahenk/plugins/manage-root/safe.py
+d1603f34d9c7b1fe3118d864cd004f3c  usr/share/ahenk/plugins/manage-root/set_root_password.py
+ce14a9c1fe208d356f047810c4bcb6e5  usr/share/ahenk/plugins/manage-root/shutdown.py
+f1671ecf253007e4dc4c66226d4003a3  usr/share/doc/ahenk-manage-root/changelog.gz

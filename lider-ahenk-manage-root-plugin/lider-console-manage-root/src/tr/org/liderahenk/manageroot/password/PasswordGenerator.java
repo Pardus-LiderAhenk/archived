@@ -1,0 +1,200 @@
+package tr.org.liderahenk.manageroot.password;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+/**
+ * 
+ * @author <a href="mailto:hasan.kara@pardus.org.tr">Hasan Kara</a>
+ *
+ */
+public final class PasswordGenerator {
+
+    private static final String LOWER = "abcdefghijklmnopqrstuvwxyz";
+    private static final String UPPER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private static final String DIGITS = "0123456789";
+    public static final String PUNCTUATION = "+=.@*!";
+    private boolean useLower;
+    private boolean useUpper;
+    private boolean useDigits;
+    private boolean usePunctuation;
+
+    private PasswordGenerator() {
+        throw new UnsupportedOperationException("Empty constructor is not supported.");
+    }
+
+    private PasswordGenerator(PasswordGeneratorBuilder builder) {
+        this.useLower = builder.useLower;
+        this.useUpper = builder.useUpper;
+        this.useDigits = builder.useDigits;
+        this.usePunctuation = builder.usePunctuation;
+    }
+
+    public static class PasswordGeneratorBuilder {
+
+        private boolean useLower;
+        private boolean useUpper;
+        private boolean useDigits;
+        private boolean usePunctuation;
+
+        public PasswordGeneratorBuilder() {
+            this.useLower = false;
+            this.useUpper = false;
+            this.useDigits = false;
+            this.usePunctuation = false;
+        }
+
+        /**
+         * Set true in case you would like to include lower characters
+         * (abc...xyz). Default false.
+         *
+         * @param useLower true in case you would like to include lower
+         * characters (abc...xyz). Default false.
+         * @return the builder for chaining.
+         */
+        public PasswordGeneratorBuilder useLower(boolean useLower) {
+            this.useLower = useLower;
+            return this;
+        }
+
+        /**
+         * Set true in case you would like to include upper characters
+         * (ABC...XYZ). Default false.
+         *
+         * @param useUpper true in case you would like to include upper
+         * characters (ABC...XYZ). Default false.
+         * @return the builder for chaining.
+         */
+        public PasswordGeneratorBuilder useUpper(boolean useUpper) {
+            this.useUpper = useUpper;
+            return this;
+        }
+
+        /**
+         * Set true in case you would like to include digit characters (123..).
+         * Default false.
+         *
+         * @param useDigits true in case you would like to include digit
+         * characters (123..). Default false.
+         * @return the builder for chaining.
+         */
+        public PasswordGeneratorBuilder useDigits(boolean useDigits) {
+            this.useDigits = useDigits;
+            return this;
+        }
+
+        /**
+         * Set true in case you would like to include punctuation characters
+         * (!@#..). Default false.
+         *
+         * @param usePunctuation true in case you would like to include
+         * punctuation characters (!@#..). Default false.
+         * @return the builder for chaining.
+         */
+        public PasswordGeneratorBuilder usePunctuation(boolean usePunctuation) {
+            this.usePunctuation = usePunctuation;
+            return this;
+        }
+
+        /**
+         * Get an object to use.
+         *
+         * @return the {@link gr.idrymavmela.business.lib.PasswordGenerator}
+         * object.
+         */
+        public PasswordGenerator build() {
+            return new PasswordGenerator(this);
+        }
+    }
+
+    /**
+     * This method will generate a password depending the use* properties you
+     * define. It will use the categories with a probability. It is not sure
+     * that all of the defined categories will be used.
+     *
+     * @param length the length of the password you would like to generate.
+     * @return a password that uses the categories you define when constructing
+     * the object with a probability.
+     */
+    public String generate(int length) {
+        // Argument Validation.
+        if (length <= 0) {
+            return "";
+        }
+
+        // Variables.
+        StringBuilder password = new StringBuilder(length);
+        Random random = new Random(System.nanoTime());
+
+        // Collect the categories to use.
+        List<String> charCategories = new ArrayList<>(4);
+        if (useLower) {
+            charCategories.add(LOWER);
+        }
+        if (useUpper) {
+            charCategories.add(UPPER);
+        }
+        if (useDigits) {
+            charCategories.add(DIGITS);
+        }
+        if (usePunctuation) {
+            charCategories.add(PUNCTUATION);
+        }
+
+        // Build the password.
+        for (int i = 0; i < length; i++) {
+            String charCategory = charCategories.get(random.nextInt(charCategories.size()));
+            int position = random.nextInt(charCategory.length());
+            password.append(charCategory.charAt(position));
+        }
+        
+        //control if string fits to all rules
+        //if contains uppercase
+        Boolean containsLower = false;
+        Boolean containsUpper = false;
+        Boolean containsDigit = false;
+        Boolean containsPunctuation = false;
+        String pwd = new String(password);
+        for (int i = 0; i < pwd.length(); i++) {
+        	if(containsLower != true && useLower == true) {
+        		String s = String.valueOf(pwd.charAt(i));
+    			if(LOWER.contains(s)) {
+    				containsLower = true;
+    			}
+        	}
+        	if(containsUpper != true && useUpper == true) {
+        		String s = String.valueOf(pwd.charAt(i));
+    			if(UPPER.contains(s)) {
+    				containsUpper = true;
+    			}
+        	}
+        	if(containsDigit != true && useDigits == true) {
+        		String s = String.valueOf(pwd.charAt(i));
+    			if(DIGITS.contains(s)) {
+    				containsDigit = true;
+    			}
+        	}
+        	if(containsPunctuation != true && usePunctuation == true) {
+        		String s = String.valueOf(pwd.charAt(i));
+    			if(PUNCTUATION.contains(s)) {
+    				containsPunctuation = true;
+    			}
+        	}
+		}
+        Boolean validPasswordCriteria = true;
+        if(useLower && containsLower == false) 
+        	validPasswordCriteria = false;
+        if(useUpper && containsUpper == false) 
+        	validPasswordCriteria = false;
+        else if(useDigits && containsDigit == false) 
+        	validPasswordCriteria = false;
+        else if(usePunctuation && containsPunctuation == false) 
+        	validPasswordCriteria = false;
+        
+        if(validPasswordCriteria)
+        	return new String(password);
+        else 
+        	return generate(length);
+    }
+}

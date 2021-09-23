@@ -1,0 +1,9 @@
+f989c0a87519e3d461fc94e4104dbc5b  usr/share/ahenk/plugins/notify/eta_notify.py
+3c3260b124c9bfa19eb22af1b9604274  usr/share/ahenk/plugins/notify/init.py
+5600c082c5fd4005cbfe34befd4412e3  usr/share/ahenk/plugins/notify/login.py
+676a180eaf84babe8131274f7680e3c8  usr/share/ahenk/plugins/notify/logout.py
+45619ab4a5e4807a981030488d80f6fc  usr/share/ahenk/plugins/notify/main.py
+2613e05c313fec8cef382cd53513fd9a  usr/share/ahenk/plugins/notify/policy.py
+53ba59fa72fc042c8a599541f1f3f054  usr/share/ahenk/plugins/notify/safe.py
+ce14a9c1fe208d356f047810c4bcb6e5  usr/share/ahenk/plugins/notify/shutdown.py
+94a83bd38d84a02425ac2397a177cd04  usr/share/doc/ahenk-notify/changelog.gz

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="lider-notify-feature-1.0.0">
+    <feature name="lider-notify" version="1.0.0">
+        <feature prerequisite="false" dependency="false">lider-notify-dependencies</feature>
+        <feature prerequisite="false" dependency="false">lider-notify-bundles</feature>
+    </feature>
+    <feature name="lider-notify-bundles" version="1.0.0">
+        <configfile finalname="/etc/tr.org.liderahenk.notify.cfg">mvn:tr.org.liderahenk/lider-notify/1.0.0/cfg</configfile>
+        <bundle>mvn:tr.org.liderahenk/lider-notify/1.0.0</bundle>
+        <bundle>mvn:tr.org.liderahenk/lider-notify-db/1.0.0</bundle>
+    </feature>
+    <feature name="lider-notify-dependencies" version="1.0.0">
+        <bundle>mvn:org.codehaus.jackson/jackson-core-asl/1.9.13</bundle>
+        <bundle>mvn:org.codehaus.jackson/jackson-mapper-asl/1.9.13</bundle>
+    </feature>
+    <feature name="lider-notify-feature" description="lider-notify-feature" version="1.0.0">
+        <bundle>mvn:log4j/log4j/1.2.17</bundle>
+        <bundle>mvn:org.slf4j/slf4j-log4j12/1.6.1</bundle>
+        <bundle>mvn:org.slf4j/slf4j-api/1.6.1</bundle>
+    </feature>
+</features>

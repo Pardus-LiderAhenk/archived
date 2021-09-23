@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmi:id="_wFH1gL6GEeW1FPx53XIKsg">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_wqkr8L6GEeW1FPx53XIKsg" featurename="commands" parentElementId="org.eclipse.e4.ide.application">
+    <elements xsi:type="commands:Command" xmi:id="_0yAbYL6GEeW1FPx53XIKsg" elementId="tr.org.liderahenk.installer.commands.LiderInstallationHandler" commandName="Show Lider Installation Wizard"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_xBFHcL6GEeW1FPx53XIKsg" featurename="handlers" parentElementId="org.eclipse.e4.ide.application">
+    <elements xsi:type="commands:Handler" xmi:id="_6JNwoL6GEeW1FPx53XIKsg" elementId="tr.org.liderahenk.installer.lider.handler.LiderInstallationHandler" contributionURI="bundleclass://tr.org.liderahenk.installer.lider/tr.org.liderahenk.installer.lider.handler.LiderInstallationHandler" command="_0yAbYL6GEeW1FPx53XIKsg"/>
+  </fragments>
+</fragment:ModelFragments>

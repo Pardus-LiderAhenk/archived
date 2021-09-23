@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.LoginManagerProfile"            
+            name="%command.profile">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.LoginManagerTask"            
+            name="%command.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+       	<handler
+            class="tr.org.liderahenk.loginmanager.handlers.LoginManagerProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.LoginManagerProfile">
+      	</handler>
+       <handler
+            class="tr.org.liderahenk.loginmanager.handlers.LoginManagerTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.LoginManagerTask">
+      </handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+		           commandId="tr.org.liderahenk.liderconsole.commands.LoginManagerProfile"
+		           icon="icons/16/login-management-profile.png"
+		           id="tr.org.liderahenk.liderconsole.commands.LoginManagerProfile"
+		           tooltip="%command.profile">
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+           commandId="tr.org.liderahenk.liderconsole.commands.LoginManagerTask"
+           icon="icons/16/login-management.png"
+           id="tr.org.liderahenk.liderconsole.commands.LoginManagerTask"
+           tooltip="%command.task">
+        <visibleWhen>
+           <and>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+                 <equals
+                       value="true">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapUserSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+              <with
+                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isLdapGroupSelected">
+                 <equals
+                       value="false">
+                 </equals>
+              </with>
+           </and>
+        </visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="login-manager" 
+  		pluginVersion="1.0.0" 
+  		profileCommandId="tr.org.liderahenk.liderconsole.commands.LoginManagerProfile" />
+  	</extension>
+
+	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="login-manager" 
+  		pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.LoginManagerTask" selectionType="multi" 
+  		description="Ahenk makinesinde/makienlerinde oturum açmış tüm kullanıcıların oturumlarını tek bir tuşla sonlandırmayı sağlar.&#xA;Varolan oturumları sonlandırmak için tıklayınız.."
+  		imagePath="login-management.png"/>
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="MANAGE" label="%command.task" />
+		<plugin name="login-manager" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

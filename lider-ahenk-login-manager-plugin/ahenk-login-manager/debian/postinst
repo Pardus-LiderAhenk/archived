@@ -1,0 +1,27 @@
+#!/bin/sh
+# postinst script for ahenk-login-manager
+#
+# see: dh_installdeb(1)
+
+set -e
+
+
+case "$1" in
+    configure)
+
+        #reload plugin
+
+    ;;
+
+    abort-upgrade|abort-remove|abort-deconfigure)
+    ;;
+
+    *)
+        echo "postinst called with unknown argument \`$1'" >&2
+        exit 1
+    ;;
+esac
+crontab -l | sed '/login-manager\/scripts\/check.py/d' > /tmp/login-manager-cronfile && crontab /tmp/login-manager-cronfile
+rm -rf /tmp/login-manager-cronfile
+
+exit 0

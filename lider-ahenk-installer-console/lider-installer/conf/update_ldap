@@ -1,0 +1,78 @@
+#!/bin/bash
+
+#1 se config kullanici sifresini atar yoksa config kullanici sifresi olusturmaz
+UPDATE_CONFIG_USER=#UPDATE_CONFIG_USER
+CNCONFIGADMINDN="#CN_CONFIG_ADMIN_DN"
+CNCONFIGADMINPASSWD="#CN_CONFIG_ADMIN_PWD"
+BASE_DN="#BASE_DN"
+LIDERAHENK_SCHEMA_PATH="/tmp/liderahenk.ldif"
+LDAP_DATABASE_ADMIN_DN="#LDAP_DB_ADMIN_DN"
+LDAP_DATABASE_ADMIN_PASSWORD="#LDAP_DB_ADMIN_PWD"
+LIDER_SERVER_ADDR="http://#LIDER_SERVER_ADDR"
+LADMIN_PASSWORD="#LADMIN_PWD"
+
+if [ $UPDATE_CONFIG_USER -eq 1 ]; then
+  #Varsayilan sifre secret
+NEW_PASSWD=$(slappasswd -h {SSHA} -s $CNCONFIGADMINPASSWD)
+
+#mevcut cn=config sifresini siler ve yenisini ekler
+ldapmodify -Y EXTERNAL -H ldapi:/// << EOL
+dn: olcDatabase={0}config,cn=config
+replace: olcRootPW
+olcRootPW: $NEW_PASSWD
+
+dn: cn=config
+replace: olcAuthzRegexp
+olcAuthzRegexp: {0}uid=([^,]*),cn=[^,]*,cn=auth  ldap:///$BASE_DN??sub?(uid=\$1)
+-
+replace: olcSizeLimit
+olcSizeLimit: 10000
+EOL
+
+fi
+
+
+# Install liderahenk schema ldif
+#ldapadd -x -f $LIDERAHENK_SCHEMA_PATH -D "$CNCONFIGADMINDN" -w $CNCONFIGADMINPASSWD
+ldapadd -x -D "$CNCONFIGADMINDN" -f $LIDERAHENK_SCHEMA_PATH -w $CNCONFIGADMINPASSWD
+
+service slapd restart
+
+ldapadd -x -D "$LDAP_DATABASE_ADMIN_DN" -w $LDAP_DATABASE_ADMIN_PASSWORD << EOL
+
+dn: ou=Ahenkler,$BASE_DN
+objectClass: top
+objectClass: organizationalUnit
+ou: Ahenkler
+description: pardusDeviceGroup
+EOL
+
+ldapadd -x -D "$LDAP_DATABASE_ADMIN_DN" -w $LDAP_DATABASE_ADMIN_PASSWORD << EOL
+
+dn: cn=liderAhenkConfig,$BASE_DN
+objectClass: pardusLiderAhenkConfig
+cn: liderAhenkConfig
+liderServiceAddress: $LIDER_SERVER_ADDR
+EOL
+
+ldapadd -x -D "$LDAP_DATABASE_ADMIN_DN" -w $LDAP_DATABASE_ADMIN_PASSWORD << EOL
+
+dn: cn=ladmin,$BASE_DN
+objectClass: pardusLider
+objectClass: pardusAccount
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+cn: ladmin
+sn: ladmin
+uid: ladmin
+userPassword: $LADMIN_PASSWORD
+liderPrivilege: [TASK:$BASE_DN:ALL]
+liderPrivilege: [REPORT:ALL]
+EOL
+
+systemctl restart slapd.service
+
+#bitti
+exit 0

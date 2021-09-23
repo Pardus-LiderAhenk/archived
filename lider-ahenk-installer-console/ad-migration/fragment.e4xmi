@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ASCII"?>
+<fragment:ModelFragments xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:commands="http://www.eclipse.org/ui/2010/UIModel/application/commands" xmlns:fragment="http://www.eclipse.org/ui/2010/UIModel/fragment" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_7JCg0L6EEeW1FPx53XIKsg">
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_9lMaML6EEeW1FPx53XIKsg" featurename="commands" parentElementId="org.eclipse.e4.ide.application">
+    <elements xsi:type="commands:Command" xmi:id="_J3YkkL6FEeW1FPx53XIKsg" elementId="tr.org.liderahenk.admigration.commands.AdMigration" commandName="Show AD Migration Wizard"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_Qg8SgL6FEeW1FPx53XIKsg" featurename="handlers" parentElementId="org.eclipse.e4.ide.application">
+    <elements xsi:type="commands:Handler" xmi:id="_U845YL6FEeW1FPx53XIKsg" elementId="tr.org.liderahenk.admigration.handler.AdMigrationHandler" contributionURI="bundleclass://tr.org.liderahenk.admigration/tr.org.liderahenk.admigration.handler.AdMigrationHandler" command="_J3YkkL6FEeW1FPx53XIKsg"/>
+  </fragments>
+  <fragments xsi:type="fragment:StringModelFragment" xmi:id="_8YxCoJtXEeaKC74mLO4cPw" featurename="children" parentElementId="tr.org.liderahenk.installer.rcp.menu.tools">
+    <elements xsi:type="menu:HandledMenuItem" xmi:id="_QusZ8JtYEeaKC74mLO4cPw" elementId="tr.org.liderahenk.admigration.handledmenuitem.admigration" label="Active Directory - LDAP g&#xf6;&#xe7;" command="_J3YkkL6FEeW1FPx53XIKsg"/>
+  </fragments>
+</fragment:ModelFragments>

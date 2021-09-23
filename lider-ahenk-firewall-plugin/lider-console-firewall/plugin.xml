@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.FirewallProfile"            
+            name="%command.profile">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.FirewallTask"            
+            name="%command.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+       	<handler
+            class="tr.org.liderahenk.firewall.handlers.FirewallProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.FirewallProfile">
+      	</handler>
+       <handler
+            class="tr.org.liderahenk.firewall.handlers.FirewallTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.FirewallTask">
+      </handler>
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+		           commandId="tr.org.liderahenk.liderconsole.commands.FirewallProfile"
+		           icon="icons/16/firewall.png"
+		           id="tr.org.liderahenk.liderconsole.commands.FirewallProfile"
+		           tooltip="%command.profile">
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+		           commandId="tr.org.liderahenk.liderconsole.commands.FirewallTask"
+		           icon="icons/16/firewall.png"
+		           id="tr.org.liderahenk.liderconsole.commands.FirewallTask"
+		           tooltip="%command.task">
+			        <visibleWhen>
+			           <and>
+			              <with
+			                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSingleEntrySelected">
+			                 <equals
+			                       value="true">
+			                 </equals>
+			              </with>
+			              <with
+			                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+			                 <equals
+			                       value="true">
+			                 </equals>
+			              </with>
+			              <with
+			                    variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+			                 <equals
+			                       value="true">
+			                 </equals>
+			              </with>
+			           </and>
+			        </visibleWhen>
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="firewall" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.FirewallProfile" />
+  	</extension>
+	<!-- Add extension point contribution for "task execution" dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" 
+  		pluginName="firewall"
+  		 pluginVersion="1.0.0" 
+  		taskCommandId="tr.org.liderahenk.liderconsole.commands.FirewallTask" 
+  		description="Varolan güvenlik duvarı kurallarını getirmeyi sağlayan eklentidir. &#xA;Güvenlik duvarı kurallarını getirmek için tıklayınız.." 
+  		imagePath="firewall.png"/>
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+  		<task code="GET-RULES" label="%command.task" />
+		<plugin name="firewall" label="%plugin.label" />
+  	</extension>
+  	
+</plugin>

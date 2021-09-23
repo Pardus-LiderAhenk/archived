@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+                 http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+                 http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://svn.apache.org/repos/asf/aries/trunk/blueprint/blueprint-cm/src/main/resources/org/apache/aries/blueprint/compendium/cm/blueprint-cm-1.1.0.xsd
+         ">
+
+	<cm:property-placeholder persistent-id="tr.org.liderahenk.example.registration"
+		update-strategy="reload">
+		<cm:default-properties>
+			<cm:property name="file.protocol" value="inner" />
+			<cm:property name="file.path" value="/records.csv" />
+		</cm:default-properties>
+	</cm:property-placeholder>
+
+	<service ref="RegistrationSubscriberImpl">
+		<interfaces>
+			<value>tr.org.liderahenk.lider.core.api.messaging.subscribers.IRegistrationSubscriber</value>
+			<value>tr.org.liderahenk.lider.core.api.messaging.subscribers.IScriptResultSubscriber</value>
+		</interfaces>
+	</service>
+	<bean id="RegistrationSubscriberImpl"
+		class="tr.org.liderahenk.registration.subscriber.RegistrationSubscriberImpl">
+		<property name="ldapService" ref="ldapService" />
+		<property name="configurationService" ref="configurationService" />
+		<property name="agentDao" ref="agentDao" />
+		<property name="entityFactory" ref="entityFactory" />
+		<property name="messageFactory" ref="messageFactory" />
+		<property name="registrationConfig" ref="registrationConfig" />
+		<property name="registrationDao" ref="registrationDao" />
+	</bean>
+	
+	<bean id="registrationConfig" class="tr.org.liderahenk.registration.config.RegistrationConfig"
+		init-method="refresh">
+		<property name="fileProtocol" value="${file.protocol}" />
+		<property name="filePath" value="${file.path}" />
+	</bean>
+	
+	<reference id="ldapService"
+		interface="tr.org.liderahenk.lider.core.api.ldap.ILDAPService" />
+	<reference id="configurationService"
+		interface="tr.org.liderahenk.lider.core.api.configuration.IConfigurationService" />
+	<reference id="agentDao"
+		interface="tr.org.liderahenk.lider.core.api.persistence.dao.IAgentDao" />
+		
+	<reference id="registrationDao"
+		interface="tr.org.liderahenk.lider.core.api.persistence.dao.IRegistrationDao" />
+	<reference id="entityFactory"
+		interface="tr.org.liderahenk.lider.core.api.persistence.factories.IEntityFactory" />
+	<reference id="messageFactory"
+		interface="tr.org.liderahenk.lider.core.api.messaging.IMessageFactory" />
+		
+</blueprint>

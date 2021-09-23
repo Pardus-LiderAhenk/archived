@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.NotifyProfile"            
+            name="%command.profile">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.NotifyTask"            
+            name="%command.task">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.notify.handlers.NotifyProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.NotifyProfile">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      	</handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.notify.handlers.NotifyTaskHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.NotifyTask">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.NotifyProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.NotifyProfile"
+                  tooltip="%command.profile">
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.NotifyTask"
+                  id="tr.org.liderahenk.liderconsole.commands.NotifyTask"
+                  tooltip="%command.task">
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs -->
+	<!-- <extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="notify" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.NotifyProfile" />
+  	</extension> -->
+  	
+  	<extension
+  		point="tr.org.liderahenk.liderconsole.core.taskmenu">
+  		<taskItem label="%command.task" pluginName="notify" pluginVersion="1.0.0" taskCommandId="tr.org.liderahenk.liderconsole.commands.NotifyTask" 
+  		selectionType="multi" description="Masaütü bilgilendirme mesajı gönderir." 
+  		imagePath="folder-add.png"/>
+  	</extension>
+  	
+</plugin>

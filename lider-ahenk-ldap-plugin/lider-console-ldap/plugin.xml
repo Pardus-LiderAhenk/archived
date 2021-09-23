@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+      </category>         
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.LdapProfile"            
+            name="%command.profile">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.RenameAgentName"            
+            name="%command.task.rename">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.MoveAgent"            
+            name="%command.task.move">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.DeleteAgent"            
+            name="%command.task.delete">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AddOu"            
+            name="%command.task.addou">
+      </command>
+      
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AddUser"            
+            name="%command.task.adduser">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.DeleteUser"            
+            name="%command.task.deleteuser">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.MoveUser"            
+            name="%command.task.deleteuser">
+      </command>
+      
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.AddAttribute"            
+            name="%command.task.addattribute">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.UpdateAttribute"            
+            name="%command.task.updateattribute">
+      </command>
+      <command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.DeleteAttribute"            
+            name="%command.task.deleteattribute">
+      </command>
+   </extension>
+   
+   <extension
+       point="org.eclipse.ui.handlers">
+
+		<!-- Profile handler -->
+       	<handler
+            class="tr.org.liderahenk.ldap.handlers.LdapProfileHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.LdapProfile">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      	</handler>
+      	
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.RenameAgentNameHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.RenameAgentName">
+           <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+		   <!-- <enabledWhen>
+				<and>
+		          <with
+		                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.available">
+		             <equals
+		                   value="true">
+		             </equals>
+		          </with>
+				<with
+	                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+	             	<equals
+		                   value="true">
+		            </equals>
+	          	</with>
+		       </and>
+		    </enabledWhen> -->        
+      </handler>
+      	<!-- Task handler -->
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.MoveAgentHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.MoveAgent">
+             
+      </handler>
+      
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.DeleteAgentHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.DeleteAgent">
+             
+      </handler>
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.AddOuHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AddOu">
+             
+      </handler>
+      
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.AddUserHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AddUser">
+             
+      </handler>
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.DeleteUserHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.DeleteUser">
+             
+      </handler>
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.MoveUserHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.MoveUser">
+             
+      </handler>
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.AddAttributeHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.AddAttribute">
+             
+      </handler>
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.UpdateAttributeHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.UpdateAttribute">
+             
+      </handler>
+       <handler
+            class="tr.org.liderahenk.ldap.handlers.DeleteAttributeHandler"
+            commandId="tr.org.liderahenk.liderconsole.commands.DeleteAttribute">
+             
+      </handler>
+      
+  </extension>
+  
+  <extension
+         point="org.eclipse.ui.menus">
+
+		<!-- Add menu command for "profile definition" dialog -->
+		<menuContribution
+            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.LdapProfile"
+                  id="tr.org.liderahenk.liderconsole.commands.LdapProfile"
+                  tooltip="%command.profile">
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+		</menuContribution>
+      
+      	<!-- Add extension point contribution for "task execution" dialogs -->
+		<menuContribution
+      		allPopups="false"
+            locationURI="popup:tr.org.liderahenk.liderconsole.menus.ApplyTask?after=additions">
+ 				<command
+                  commandId="tr.org.liderahenk.liderconsole.commands.LdapTask"
+                  id="tr.org.liderahenk.liderconsole.commands.LdapTask"
+                  tooltip="%command.task">
+                  <!-- TODO Uncomment this after updating/fixing LiderSourceProvider -->
+				  <!-- <visibleWhen>
+					   <and>
+			                <iterate operator="or">		
+			                	<or>
+							  	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isSearchSelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					          	<with
+					                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isEntrySelected">
+						             <equals
+						                   value="true">
+						             </equals>
+					          	</with>
+					        	</or>
+					        </iterate>
+							<with
+				                variable="tr.org.liderahenk.liderconsole.core.sourceproviders.main.isAhenkSelected">
+				             	<equals
+					                   value="true">
+					            </equals>
+				          	</with>
+					    </and>
+					</visibleWhen> -->               
+           		</command>
+		</menuContribution>
+  </extension>
+  
+	<!-- Add extension point contribution for "policy execution" dialogs
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.profile" pluginName="ldap" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.LdapProfile" />
+  	</extension>
+  	
+  	 -->
+  	
+</plugin>

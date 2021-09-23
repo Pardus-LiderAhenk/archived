@@ -1,0 +1,5 @@
+#!/bin/bash
+# prerm script for login-manager
+#
+crontab -l | sed '/login-manager\/scripts\/check.py/d' > /tmp/login-manager-cronfile && crontab /tmp/login-manager-cronfile
+rm -rf /tmp/login-manager-cronfile

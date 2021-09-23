@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+                 http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+                 http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://svn.apache.org/repos/asf/aries/trunk/blueprint/blueprint-cm/src/main/resources/org/apache/aries/blueprint/compendium/cm/blueprint-cm-1.1.0.xsd
+         ">
+
+	<cm:property-placeholder persistent-id="tr.org.liderahenk.service"
+		update-strategy="reload">
+	</cm:property-placeholder>
+
+	<!-- IPluginInfo implementation is used to register plugin -->
+	<service ref="pluginInfoImpl"
+		interface="tr.org.liderahenk.lider.core.api.plugin.IPluginInfo" />
+	<bean id="pluginInfoImpl" class="tr.org.liderahenk.service.plugininfo.PluginInfoImpl"
+		init-method="refresh">
+		<!-- Plugin definition -->
+		<property name="pluginName" value="${plugin.name}" />
+		<property name="pluginVersion" value="${plugin.version}" />
+		<property name="description" value="${plugin.description}" />
+		<property name="machineOriented" value="${plugin.machine.oriented}" />
+		<property name="userOriented" value="${plugin.user.oriented}" />
+		<property name="policyPlugin" value="${plugin.policy.plugin}" />
+		<property name="taskPlugin" value="${plugin.task.plugin}" />
+		<property name="usesFileTransfer" value="${plugin.uses.file.transfer}" />
+		<property name="xbased" value="${plugin.x.based}" />
+	</bean>
+	<!-- ICommand implementation is used to process a task execution -->
+	<service ref="GetServiceListCommand" interface="tr.org.liderahenk.lider.core.api.plugin.ICommand" />
+	<bean id="GetServiceListCommand" class="tr.org.liderahenk.service.commands.GetServiceListCommand">
+		<property name="resultFactory" ref="resultFactory" />
+		<property name="pluginInfo" ref="pluginInfoImpl" />
+	</bean>
+	<!-- ICommand implementation is used to process a task execution -->
+	<service ref="ServiceListCommand">
+	<interfaces>
+			<value>tr.org.liderahenk.lider.core.api.plugin.ICommand</value>
+			<value>tr.org.liderahenk.lider.core.api.plugin.ITaskAwareCommand</value>
+		</interfaces>
+	</service>
+	
+	
+	
+	<bean id="ServiceListCommand" class="tr.org.liderahenk.service.commands.ServiceListCommand">
+		<property name="resultFactory" ref="resultFactory" />
+		<property name="pluginInfo" ref="pluginInfoImpl" />
+		<property name="pluginDbService" ref="pluginDbService" />
+	</bean>
+
+	<!-- ICommand implementation is used to process a task execution -->
+	<service ref="ServiceCommand" interface="tr.org.liderahenk.lider.core.api.plugin.ICommand"  />
+	
+	<bean id="ServiceCommand" class="tr.org.liderahenk.service.commands.ServiceCommand">
+		<property name="resultFactory" ref="resultFactory" />
+		<property name="pluginInfo" ref="pluginInfoImpl" />
+		<property name="pluginDbService" ref="pluginDbService" />
+		<property name="taskDao" ref="taskDao" />
+		<property name="messagingService" ref="messagingService" />
+		<property name="messageFactory" ref="messageFactory" />
+		<property name="commandDao" ref="commandDao" />
+	</bean>
+
+
+	<!-- ICommand implementation is used to process a task execution -->
+	<service ref="GetServices" interface="tr.org.liderahenk.lider.core.api.plugin.ICommand" />
+	<bean id="GetServices" class="tr.org.liderahenk.service.commands.GetServicesFromDbCommand">
+		<property name="resultFactory" ref="resultFactory" />
+		<property name="pluginInfo" ref="pluginInfoImpl" />
+		<property name="taskDao" ref="taskDao" />
+		<property name="pluginDbService" ref="pluginDbService" />
+	</bean>
+	
+	
+	<!-- ICommand implementation is used to process a task execution -->
+	<service ref="DeleteServices" interface="tr.org.liderahenk.lider.core.api.plugin.ICommand" />
+	<bean id="DeleteServices" class="tr.org.liderahenk.service.commands.DeleteServiceCommand">
+		<property name="resultFactory" ref="resultFactory" />
+		<property name="pluginInfo" ref="pluginInfoImpl" />
+		<property name="pluginDbService" ref="pluginDbService" />
+	</bean>
+
+	<reference id="resultFactory" interface="tr.org.liderahenk.lider.core.api.service.ICommandResultFactory" />
+	
+	<reference id="pluginDbService" interface="tr.org.liderahenk.lider.core.api.persistence.IPluginDbService" />
+	
+	<reference id="logService" interface="tr.org.liderahenk.lider.core.api.log.IOperationLogService" />
+	
+	<reference id="taskDao" interface="tr.org.liderahenk.lider.core.api.persistence.dao.ITaskDao" />
+	
+	<reference id="messagingService" interface="tr.org.liderahenk.lider.core.api.messaging.IMessagingService" />
+	
+	<reference id="commandDao"	interface="tr.org.liderahenk.lider.core.api.persistence.dao.ICommandDao" />
+	
+	<reference id="messageFactory"		interface="tr.org.liderahenk.lider.core.api.messaging.IMessageFactory" />
+	
+</blueprint>

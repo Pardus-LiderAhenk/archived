@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   
+	<extension
+		point="org.eclipse.ui.commands">
+		<category
+            id="tr.org.liderahenk.liderconsole.commands.category"
+            name="%commands.category">
+		</category>         
+		<command
+            categoryId="tr.org.liderahenk.liderconsole.commands.category"
+            id="tr.org.liderahenk.liderconsole.commands.BrowserProfile"            
+            name="%command.browser.profile">
+		</command>
+	</extension>
+   
+	<extension
+		point="org.eclipse.ui.handlers">      
+		<handler
+			class="tr.org.liderahenk.browser.handlers.BrowserProfileHandler"
+			commandId="tr.org.liderahenk.liderconsole.commands.BrowserProfile">
+		</handler>
+	</extension>
+  
+	<extension
+         point="org.eclipse.ui.menus">
+     	<!-- Add menu command for profile definition dialog -->
+	     <menuContribution
+	            locationURI="menu:tr.org.liderahenk.liderconsole.menus.ProfileDefinition?after=additions">
+			<command
+				commandId="tr.org.liderahenk.liderconsole.commands.BrowserProfile"
+				id="tr.org.liderahenk.liderconsole.commands.BrowserProfile"
+				icon="icons/16/browser.png"
+				tooltip="%command.browser.profile">
+			</command>
+		</menuContribution>
+	</extension>
+	
+	<!-- Add extension point contribution for policy execution dialogs -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.policymenu">
+  		<policyItem label="%command.browser.profile" pluginName="browser" pluginVersion="1.0.0" profileCommandId="tr.org.liderahenk.liderconsole.commands.BrowserProfile" />
+  	</extension>
+  	
+	<!-- Add extension point contribution for i18n messages -->
+	<extension
+  		point="tr.org.liderahenk.liderconsole.core.i18n">
+		<plugin name="browser" label="%plugin.label" />
+  	</extension>
+  
+</plugin>
